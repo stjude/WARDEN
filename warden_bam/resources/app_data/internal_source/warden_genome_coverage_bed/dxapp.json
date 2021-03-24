@@ -1,0 +1,139 @@
+{
+  "name": "warden_genome_coverage_bed",
+  "title": "WARDEN: Genome coverage analysis",
+  "summary": "Creates coverage files (BED) of alignment files (BAM)",
+  "dxapi": "1.0.0",
+  "version": "0.1.6",
+  "inputSpec": [
+    {
+      "name": "input_bam",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.bam"
+      ],
+      "help": ""
+    },
+    {
+      "name": "sorted",
+      "class": "boolean",
+      "optional": false,
+      "help": "Is bam coordinate sorted?"
+    },
+    {
+      "name": "output_prefix",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "genome_sizes_file",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "scale",
+      "label": "scale (0 for scale based on counts, 1 for no scaling)",
+      "class": "int",
+      "choices": [
+        0,
+        1
+      ],
+      "default": 0,
+      "help": ""
+    },
+    {
+      "name": "strandedness",
+      "class": "string",
+      "choices": [
+        "yes",
+        "reverse",
+        "no"
+      ],
+      "default": "no",
+      "help": ""
+    },
+    {
+      "name": "output_options",
+      "class": "string",
+      "choices": [
+        "none",
+        "-bg",
+        "-bga",
+        "-d",
+        "-dz"
+      ],
+      "default": "-bg",
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "pos_coverage_file",
+      "class": "file",
+      "patterns": [
+        "*.bed"
+      ],
+      "optional": true,
+      "help": ""
+    },
+    {
+      "name": "neg_coverage_file",
+      "class": "file",
+      "patterns": [
+        "*.bed"
+      ],
+      "optional": true,
+      "help": ""
+    },
+    {
+      "name": "all_coverage_file",
+      "class": "file",
+      "patterns": [
+        "*.bed"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 8
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/warden_genome_coverage_bed.sh",
+    "distribution": "Ubuntu",
+    "release": "16.04",
+    "version": "0"
+  },
+  "access": {
+    "network": [
+      "*"
+    ]
+  },
+  "regionalOptions": {
+    "azure:westus": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "azure:mem3_ssd1_x8"
+        }
+      }
+    },
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem3_ssd1_x8"
+        }
+      }
+    }
+  },
+  "authorizedUsers": [
+    "org-stjude_cloud",
+    "org-stjude_cloud_app_runners"
+  ]
+}

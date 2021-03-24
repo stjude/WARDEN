@@ -1,0 +1,33 @@
+name: diff_check
+on:
+  push:
+
+jobs:
+  concordance-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Check
+        run: |
+          EXITCODE=0
+          for subdir in warden_bam/resources/app_data/internal_source/*; do
+            if [ "$(basename "$subdir")" = "warden_genome_coverage_bed" ]; then
+              continue
+            fi
+            echo "Checking WARDEN (BAM): $(basename "$subdir")"
+            result=$(diff -r -q "$subdir" warden_fastq/resources/app_data/internal_source/"$(basename "$subdir")") || true
+            if [[ -n "$result" ]]; then
+              echo "$result"
+              EXITCODE=1
+            fi
+          done
+          for subdir in warden_counts/resources/app_data/internal_source/*; do
+            echo "Checking WARDEN (counts): $(basename "$subdir")"
+            result=$(diff -r -q "$subdir" warden_fastq/resources/app_data/internal_source/"$(basename "$subdir")") || true
+            if [[ -n "$result" ]]; then
+              echo "$result"
+              EXITCODE=1
+            fi
+          done
+          exit $EXITCODE

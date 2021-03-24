@@ -1,0 +1,13 @@
+fastqc	warden_fastqc
+star	warden_star_aligner
+sort_bam	warden_name_sort_bam
+htseq	warden_htseq_count
+genome_coverage	warden_genome_coverage_bed
+bigwig	warden_bedgraph_to_bigwig
+limma	warden_voom_limma
+simple_DE	warden_simple_differential_expression
+combine_counts	warden_combine_counts
+sample_list	warden_samplelist_prep
+bw_viewer	warden_bw_to_viewer
+combine_flagstat	warden_combine_flagstat
+combine_sj_out	warden_combine_sj_out

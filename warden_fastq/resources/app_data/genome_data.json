@@ -1,0 +1,371 @@
+{
+	"Human_hg38_v31": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpGxy9Q9PZxkkf05P6xK2YYv",
+			"md5sum": "",
+			"indexDescription": "",
+			"indexedWithGTF": "true",
+			"misc": ""
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpGy1JQ9PZxq12kG2Q6Yj73V",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpGxy409PZxvK29K52gyJP62",
+			"annotationDescription": "",
+			"notes": "",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpGy0Z89PZxqyyx1PJ9QkYB6"
+		},
+		"starInstanceType": "",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kp093pQb191x21jFb6gP",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kgj93pQYyZqyBkVgGVjF"
+		}
+	},
+	"Human_hg19_v19": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9Yf09PZxZB81VKG6b1z7z",
+			"md5sum": "",
+			"indexDescription": "",
+			"indexedWithGTF": "true",
+			"misc": ""
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9jQ89PZxv395p5KYXFGzp",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9YXQ9PZxfqy5yB9qfxY6b",
+			"annotationDescription": "",
+			"notes": "",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9gjQ9PZxjKfk10GKfky3Z"
+		},
+		"starInstanceType": "",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kp093pQb191x21jFb6gP",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kgj93pQYyZqyBkVgGVjF"
+		}
+	},
+	"Human_hg38_v26_levels_1_2": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5j2Qg095VJjG3g16xyFf9Z8",
+			"md5sum": "",
+			"indexDescription": "The hg38 genome without  alternative contigs (but with contigs) was indexed with STAR version  2.5.2b [[REF:STAR]].  The genome was indexed with  level 1 and 2 genes from GENCODE [[REF:GENCODE HUMAN]] v26 for splice junction determination.  The sjdbOverhang parameter was set at 100.  Each sample was aligned to the indexed reference genome using STAR.",
+			"notes": "bsub -q compbio_priority -P RNA_SEQ_5465 -R \"rusage[mem=48000]\" -oo logs/indexGTF.stdout -eo logs/indexGTF.stderr  $STARBIN --genomeDir HG38_gencode26   --runMode genomeGenerate --runThreadN 8 --genomeFastaFiles /nfs_exports/genomes/1/Homo_sapiens/GRCh38_no_alt/FASTA/GRCh38_no_alt.fa  --sjdbGTFfile gencode.v26.chr_patch_hapl_scaff.annotation.gtf  --sjdbOverhang 100",
+			"indexedWithGTF": "true",
+			"misc": "STARBIN=/home/lpalmer1/programs/STAR/STAR-2.5.2b/bin/Linux_x86_64/STAR"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5j2pj895VJz7bF98GQyjJx1",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5jG8xj95VJQ36YB6Qz0gGGf",
+			"annotationDescription": "GENCODE v25lift37 annotation with only level 1 and 2 genes.",
+			"notes": "grep  -v '; level 3;' gencode.v25lift37.annotation.gtf > gencode.v25lift37.annotation.noLevel3.gtf  (was retrieved from ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/GRCh37_mapping/. )",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5jGZGj95VJzxKZ28JX5Yx9J"
+		},
+		"starInstanceType": "",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kp093pQb191x21jFb6gP",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kgj93pQYyZqyBkVgGVjF"
+		}
+	},
+	"Human_hg19_v25_levels_1_2": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58YX1j95VJZfK18GFvV5yqK",
+			"md5sum": "ff32459ba78a21a51d3fd46e65f314b3",
+			"indexDescription": "The hg19 genome without random or alternative contigs was indexed with STAR version  2.5.2b [[REF:STAR]].  The genome was indexed with  level 1 and 2 genes from GENCODE [[REF:GENCODE HUMAN]] v25lift37 for splice junction determination.  The sjdbOverhang parameter was set at 100.  Each sample was aligned to the indexed reference genome using STAR.",
+			"notes": "bsub -q compbio_priority -P RNA_SEQ_5465 -R \"rusage[mem=48000]\" -oo logs/indexGTF.stdout -eo logs/indexGTF.stderr  $STARBIN --genomeDir HG19_v25lift37  --runMode genomeGenerate --runThreadN 8 --genomeFastaFiles Hg19.fa  --sjdbGTFfile gencode.v25lift37.annotation.noLevel3.gtf  --sjdbOverhang 100",
+			"indexedWithGTF": "true",
+			"misc": "STARBIN=/home/lpalmer1/programs/STAR/STAR-2.5.2b/bin/Linux_x86_64/STAR"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58YVp895VJfjz3F8Z867VX4",
+			"md5sum": "763a80553e0db082b05c08947b6d1906"
+		},
+		"Annotations": {
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58YpPQ95VJXGJ3YGBvJ5bK4",
+			"annotationDescription": "GENCODE v25lift37 annotation with only level 1 and 2 genes.",
+			"notes": "grep  -v '; level 3;' gencode.v25lift37.annotation.gtf > gencode.v25lift37.annotation.noLevel3.gtf  (was retrieved from ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/GRCh37_mapping/. )",
+			"md5sum": "465318f918055d7f42c37efb36e4b183",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58YVkQ95VJxfb7P8ZpVzp0X"
+		},
+		"starInstanceType": "",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kkj93pQyq1Y1PQv0xPGf",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kgQ93pQVJxKpBpq3gYBP"
+		}
+	},
+	"Human_hg19_ERCC92": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F8bP8Z89PZxYfV3F6XKz92jP",
+			"md5sum": "00c2910fd278c3444644a5defda89c5b",
+			"indexDescription": "The hg19 genome without random or alternative contigs plus ERCC92 FASTA was indexed with STAR version  2.5.2b [[REF:STAR]].  The genome was indexed with  level 1 and 2 genes from GENCODE [[REF:GENCODE HUMAN]] v25lift37 for splice junction determination.  The sjdbOverhang parameter was set at 100.  Each sample was aligned to the indexed reference genome using STAR.",
+			"notes": "bsub -q compbio_priority -P RNA_SEQ_5465 -R \"rusage[mem=48000]\" -oo logs/indexGTF.stdout -eo logs/indexGTF.stderr  \"STAR --genomeDir HG19_ERCC92_v25lift37  --runMode genomeGenerate --runThreadN 8 --genomeFastaFiles hg19_ercc92.fa  --sjdbGTFfile gencode.v25lift37.annotation.noLevel3.plusERCC92.gtf  --sjdbOverhang 100\"",
+			"indexedWithGTF": "true",
+			"misc": "STARBIN=/home/lpalmer1/programs/STAR/STAR-2.5.2b/bin/Linux_x86_64/STAR"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F8bPV509PZxv09Vq6X3bjvZB",
+			"md5sum": "ca35b35e9037dfa0d15625b064625f20"
+		},
+		"Annotations": {
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F8j0P189PZxXy7y7Kxby6B9Y",
+			"annotationDescription": "GENCODE v25lift37 annotation with only level 1 and 2 genes.",
+			"notes": "grep  -v '; level 3;' gencode.v25lift37.annotation.gtf > gencode.v25lift37.annotation.noLevel3.gtf  (was retrieved from ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_25/GRCh37_mapping/. )  ERCC92 GTF added",
+			"md5sum": "2ca7f0ca8cd9a1abdc3018cc705ffddc",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F8bPJYQ9PZxqp1xF93FvXg2g"
+		},
+		"starInstanceType": "",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kkj93pQyq1Y1PQv0xPGf",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kgQ93pQVJxKpBpq3gYBP"
+		}
+	},
+	"Test1_hg19_testChr1": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58b3xj95VJj77KJ5YjvqgqV",
+			"md5sum": "",
+			"notes": "",
+			"indexedWithGTF": "true",
+			"indexDescription": "The hg19 genome without random or alternative contigs was indexed with STAR version 2.5.2b [[REF:STAR]].  The genome was indexed with  level 1 and 2 genes from GENCODE [[REF:GENCODE HUMAN]] v25lift37 for splice junction determination at the time of alignment.   Each sample was aligned to the indexed reference genome using STAR. The sjdbOverhang parameter was set at 100. "
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58b48j95VJXXjZb15GZbK0Y",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58b3v895VJv9K9918X1YgjZ",
+			"md5sum": "",
+			"annotationDescription": "GENCODE v25lift37 annotation with only level 1 and 2 genes from Chromosome 1.",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58b3x895VJbJvJPP072q238"
+		},
+		"starInstanceType": "mem1_ssd1_x4",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kkj93pQyq1Y1PQv0xPGf",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kgQ93pQVJxKpBpq3gYBP"
+		}
+	},
+	"Test_hg19_chr8": {
+		"StarIndex": {
+			"indexDescription": "The chromosome 8 fasta file from hg19 reference genome was indexed with STAR version 2.5.2b [[REF:STAR]]. Each sample was aligned to the indexed reference genome using STAR.  Gene level 1 and 2 gene annotations from GENCODE [[REF:GENCODE HUMAN]] v25lift37 was used in the alignment for splice junction determination.  The sjdbOverhang parameter was set at 100. ",
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58b3X895VJz46Xp77BB3yB8",
+			"md5sum": "",
+			"notes": ""
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58b3v095VJXXjZb15GZbK0V",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58b3pQ95VJQ2X575FF90FXj",
+			"annotationDescription": "GENCODE v25lift37 annotation with only level 1 and 2 genes from Chromosome 8.",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F58b3qj95VJj2P16185fzjvP",
+			"md5sum": ""
+		},
+		"starInstanceType": "mem1_ssd1_x4",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kkj93pQyq1Y1PQv0xPGf",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kgQ93pQVJxKpBpq3gYBP"
+		}
+	},
+	"Mouse_mm9_v1": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpBzJJQ9PZxzz5b666VVkJBY",
+			"md5sum": "f0f615df9310b60562b8105aabc6dadd",
+			"indexDescription": "The mm9 genome without random or alternative contigs was indexed with STAR version 2.5.3a [[REF:STAR]]. Each sample was aligned to the indexed reference genome using STAR.   GENCODE version M1 [[REF:GENCODE MOUSE]]  The sjdbOverhang parameter was set at 100. ",
+			"indexedWithGTF": "true"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpBzf0j9PZxy7gFyKqf157ZQ",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"annotationDescription": "The mouse Gencode version M1 GTF annotation file was used for defining genes. (https://www.gencodegenes.org/mouse_releases/1.html) . ",
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpBzXp89PZxZxYZV3FgQpPxb",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpBzYX89PZxfz7yY75VY5ZYV"
+		},
+		"starInstanceType": "mem1_ssd1_x32",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kp893pQfZfxxPQV26pQP",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kj093pQb191x21jFb6gJ"
+		}
+	},
+	"Mouse_mm10_v11": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9zKQ9PZxzF4xq5Kv19bfK",
+			"md5sum": "",
+			"indexDescription": "",
+			"indexedWithGTF": "true"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpGB2G09PZxjvZVQBB5z2KGx",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"annotationDescription": "",
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9zG89PZxjpjbq2xYxB664",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpGB1zQ9PZxb2QY7KFx5jfk4"
+		},
+		"starInstanceType": "mem1_ssd1_x32",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kpQ93pQvxfGx82QvvQ7V",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kj893pQvGZGB81pg3YyQ"
+		}
+	},
+	"Mouse_mm10_v22": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpF1BV09PZxgJQVkJVx347x6",
+			"md5sum": "",
+			"indexedWithGTF": "true"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9y209PZxXy7PXPG3QYG8z",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"annotationDescription": "",
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpF1BJ89PZxY04Q5P6v5x106",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9y189PZxv395p5KYXFJ47"
+		},
+		"starInstanceType": "mem1_ssd1_x32",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kpQ93pQvxfGx82QvvQ7V",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kj893pQvGZGB81pg3YyQ"
+		}
+	},
+	"Mouse_mm10_v24": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9QK89PZxkJQb23kvv75QP",
+			"md5sum": "",
+			"indexedWithGTF": "true"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9qg89PZxbK0qb0GXJK262",
+			"md5sum": ""
+		},
+		"Annotations": {
+			"annotationDescription": "",
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9QFj9PZxX4KGQB9KK60k6",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-FpG9qF89PZxp89x62fyQ7Qj4"
+		},
+		"starInstanceType": "mem1_ssd1_x32",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kpQ93pQvxfGx82QvvQ7V",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kj893pQvGZGB81pg3YyQ"
+		}
+	},
+	"Mouse_mm9_levels_1_2": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZK1j095VJv9jFF19zG2yFb",
+			"md5sum": "f0f615df9310b60562b8105aabc6dadd",
+			"indexDescription": "The mm9 genome without random or alternative contigs was indexed with STAR version 2.5.2b [[REF:STAR]]. Each sample was aligned to the indexed reference genome using STAR.   GENCODE version M1 [[REF:GENCODE MOUSE]] with only level 1 and 2 genes was used to aid in splice junction determination.  The sjdbOverhang parameter was set at 100. ",
+			"indexedWithGTF": "true",
+			"notes": "bsub -q compbio_priority -P RNA_SEQ_5465 -J mm9 -R \"rusage[mem=48000]\" -oo logs/indexGTF.stdout -eo logs/indexGTF.stderr  $STARBIN --genomeDir MM9_gencodeM1  --runMode genomeGenerate --runThreadN 8 --genomeFastaFiles mm9.fa  --sjdbGTFfile gencode.vM1.annotation.noLevel3.gtf  --sjdbOverhang 100"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZK5x895VJQBQpv75kYbVVx",
+			"md5sum": "97abd5bae0f8b369dd69555327231c40"
+		},
+		"Annotations": {
+			"annotationDescription": "The mouse Gencode version M1 GTF annotation file was used for defining genes. (https://www.gencodegenes.org/mouse_releases/1.html) . Only level 1+2 genes used. ",
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZK5Y095VJzGjkk2bxQK57P",
+			"notes": "grep  -v '; level 3;' gencode.vM1.annotation.gtf > gencode.vM1.annotation.noLevel3.gtf",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZK6P895VJvqGVk2F85fP4x"
+		},
+		"starInstanceType": "mem1_ssd1_x32",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kp893pQfZfxxPQV26pQP",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kj093pQb191x21jFb6gJ"
+		}
+	},
+	"Mouse_mm10_vM11_levels_1_2": {
+		"StarIndex": {
+			"indexDescription": "The mm10 genome without random or alternative contigs was indexed with STAR version 2.5.2b [[REF:STAR]].  The genome was indexed with  level 1 and 2 genes from GENCODE [[REF:GENCODE HUMAN]] version M11 for splice junction determination.  The sjdbOverhang parameter was set at 100.  Each sample was aligned to the indexed reference genome using STAR.",
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZQQgj9PZxQBQpv75kYbXg3",
+			"md5sum": "0e94b07a48b6a4644f8b0a849dedd499",
+			"notes": "bsub -q compbio_priority -P RNA_SEQ_5465 -J MM10 -R \"rusage[mem=48000]\" -oo logs/indexGTF.stdout -eo logs/indexGTF.stderr  $STARBIN --genomeDir MM10_gencodeM11  --runMode genomeGenerate --runThreadN 8  --genomeFastaFiles /nfs_exports/genomes/1/Mus_musculus/mm10/FASTA/mm10.fa   --sjdbGTFfile  gencode.vM11.annotation.noLevel3.gtf  --sjdbOverhang 100",
+			"indexedWithGTF": "true"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZVqqQ9PZxgzY3Y4x04kZ26",
+			"md5sum": "cc3c7de372bbea9dfc08fff0c739f418"
+		},
+		"Annotations": {
+			"annotationDescription": "The mouse Gencode M11 GTF annotation file was used for defining genes. (https://www.gencodegenes.org/mouse_releases/1.html)  ",
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZVjy09PZxzJxV97g3gPzxX",
+			"notes": "grep  -v '; level 3;' gencode.vM11.annotation.gtf > gencode.vM11.annotation.noLevel3.gtf",
+			"md5sum": "",
+			"geneLengthFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZVy5j9PZxjp6PgFB0FgxgZ"
+		},
+		"starInstanceType": "mem1_ssd1_x32",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kpQ93pQvxfGx82QvvQ7V",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kj893pQvGZGB81pg3YyQ"
+		}
+	},
+	"D_Mel_BDGPr5": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZXyk89PZxZBp0P75XG4QJZ",
+			"md5sum": "3e5834f11e250726a31b86301194f227",
+			"notes": "bsub -J BDGPr5NOINDEX -P RNA_SEQ_5465 -q compbio_priority   -R \"span[hosts=1] rusage[mem=48000]\" -eo  ~/logs/BDGPr5.stderr  -oo ~/logs/BDGPr5.stdout  \"$STARBIN  --genomeDir /home/lpalmer1/genomes/Drosophila/BDGPr5/STAR_BDGPr5   --runMode genomeGenerate --genomeFastaFiles  /nfs_exports/genomes/1/Drosophila_melanogaster/BDGPr5/FASTA/BDGPr5.fa\"",
+			"indexDescription": "The BDGPr5 fly reference genome (http://www.fruitfly.org/) was indexed with STAR version 2.5.2b [[REF:STAR]]. Each sample was aligned to the indexed reference genome using STAR.   PDGPr5 annotions (Drosophila_melanogaster.BDGP5.75.gtf.gz) retrieved from http://ftp.ensembl.org/pub/release-75/gtf/drosophila_melanogaster/ was used in the alignment to aid in splice junction determination.  The sjdbOverhang parameter was set at 100.",
+			"indexedWithGTF": "false"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZY1fj9PZxkfyBX16y3Kp9q",
+			"md5sum": "10c562b49b986392ea4c0bd4bc2cbab0",
+			"notes": "Generated from STAR"
+		},
+		"Annotations": {
+			"GTFFile": "project-BzXb45j04b52PPyv782QXq6F:file-F02ZKqj04b5Pg025pkgQ4pYP",
+			"annotationDescription": "PDGPr5 annotions (Drosophila_melanogaster.BDGP5.75.gtf.gz) retrieved from http://ftp.ensembl.org/pub/release-75/gtf/drosophila_melanogaster/",
+			"notes": "",
+			"md5sum": "bd673e8a61c6cba900f6f33eb3a772bf"
+		},
+		"starInstanceType": "mem1_ssd1_x16",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kpj93pQVqGyj81GxF5zY",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kjQ93pQvGZGB81pg3YyX"
+		}
+	},
+	"D_Mel_BDGP6": {
+		"StarIndex": {
+			"IndexFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZXj1j9PZxzGFZy1BPg12VJ",
+			"md5sum": "",
+			"notes": "bsub -q compbio_priority -P RNA_SEQ_5465 -R \"rusage[mem=32000]\" -oo logs/index.stdout -eo logs/index.stderr  $STARBIN --genomeDir BDGPr6_STAR --runMode genomeGenerate --runThreadN 8 --genomeFastaFiles Drosophila_melanogaster.BDGP6.dna.toplevel.fa",
+			"indexDescription": "The BDGPr6 fly reference genome (http://www.fruitfly.org/) was indexed with STAR version 2.5.2b [[REF:STAR]]. Each sample was aligned to the indexed reference genome using STAR.   PDGPr6 annotions (ftp://ftp.ensembl.org/pub/release-86/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.86.gtf.gz) was used in the alignment to aid in splice junction determination.  The sjdbOverhang parameter was set at 100.",
+			"indexedWithGTF": "false"
+		},
+		"GenomeSizes": {
+			"SizeFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZXkFj9PZxgzPbV29kQbB19",
+			"md5sum": "",
+			"notes": "Generated from STAR"
+		},
+		"Annotations": {
+			"GTFFile": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F5ZXk189PZxzGjkk2bxQK7FJ",
+			"annotationDescription": "PDGP6 annotions ftp://ftp.ensembl.org/pub/release-86/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.86.gtf.gz",
+			"notes": "",
+			"md5sum": ""
+		},
+		"starInstanceType": "mem1_ssd1_x16",
+		"viewers": {
+			"LIMMA_DifEx_Viewer": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kq093pQQ6Qz021qg0XbK",
+			"BW_VIEWER": "project-F5444K89PZxXjBqVJ3Pp79B4:file-F717kjj93pQq1yY91zkF67V3"
+		}
+	},
+	"Notes": {
+		"STARBIN": "",
+		"Directory": "Make sure to make directory for STAR output"
+	}
+}

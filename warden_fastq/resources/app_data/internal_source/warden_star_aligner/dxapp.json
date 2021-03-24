@@ -1,0 +1,287 @@
+{
+  "name": "warden_star_aligner",
+  "title": "WARDEN: STAR Aligner",
+  "summary": "Runs the STAR alignment program on input data",
+  "dxapi": "1.0.0",
+  "version": "1.0.0",
+  "inputSpec": [
+    {
+      "name": "read_file1",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.gz",
+        "*.bz2",
+        "*.fastq",
+        "*.fq"
+      ],
+      "help": ""
+    },
+    {
+      "name": "read_file2",
+      "class": "file",
+      "optional": true,
+      "patterns": [
+        "*.gz",
+        ".bz2",
+        ".fastq",
+        "*.fq"
+      ],
+      "help": ""
+    },
+    {
+      "name": "generate_transcriptome_BAM",
+      "class": "boolean",
+      "default": false,
+      "help": ""
+    },
+    {
+      "name": "star_index_archive",
+      "label": "STAR index archive",
+      "help": "",
+      "class": "file",
+      "patterns": [
+        "*.tar.gz"
+      ]
+    },
+    {
+      "name": "transcriptome_gtf",
+      "label": "Transcriptome GTF",
+      "optional": true,
+      "help": "",
+      "class": "file",
+      "patterns": [
+        "*.gtf"
+      ]
+    },
+    {
+      "name": "sjdbFileChrStartEnd",
+      "label": "sjdbFileChrStartEnd",
+      "optional": true,
+      "help": "",
+      "class": "file",
+      "patterns": [
+        "*"
+      ]
+    },
+    {
+      "name": "output_prefix",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "outSAMunmapped",
+      "class": "string",
+      "choices": [
+        "Within",
+        "None"
+      ],
+      "default": "Within",
+      "help": ""
+    },
+    {
+      "name": "outSAMattributes",
+      "class": "string",
+      "default": "NH HI AS nM NM MD XS",
+      "help": ""
+    },
+    {
+      "name": "outFilterMultimapNmax",
+      "class": "int",
+      "default": 20,
+      "help": ""
+    },
+    {
+      "name": "outFilterMismatchNmax",
+      "class": "int",
+      "default": 10,
+      "help": ""
+    },
+    {
+      "name": "alignIntronMax",
+      "class": "int",
+      "default": 500000,
+      "help": ""
+    },
+    {
+      "name": "outSAMstrandField",
+      "class": "string",
+      "choices": [
+        "None",
+        "intronMotif"
+      ],
+      "default": "intronMotif",
+      "help": ""
+    },
+    {
+      "name": "outBAMcompression",
+      "class": "string",
+      "choices": [
+        "-1",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "default": "-1",
+      "help": "-1 is default compression, 0 is none, 10 is maximum"
+    },
+    {
+      "name": "chimSegmentMin",
+      "class": "int",
+      "optional": true,
+      "default": 20,
+      "help": ""
+    },
+    {
+      "name": "sjdbOverhang",
+      "class": "int",
+      "optional": true,
+      "default": 100,
+      "help": ""
+    },
+    {
+      "name": "chimJunctionOverhangMin",
+      "class": "int",
+      "optional": true,
+      "default": 20,
+      "help": ""
+    },
+    {
+      "name": "mark_duplicates",
+      "class": "boolean",
+      "default": true,
+      "help": ""
+    },
+    {
+      "name": "subsample_target",
+      "class": "int",
+      "optional": false,
+      "default": 100000000,
+      "help": "Set to -1 to always map all reads. Default limit is sufficient for DE analysis and prevents run away costs."
+    },
+    {
+      "name": "first_pass",
+      "class": "boolean",
+      "default": false
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "sorted_by_coord_bam",
+      "class": "file",
+      "patterns": [
+        "*.bam"
+      ],
+      "optional": true,
+      "help": ""
+    },
+    {
+      "name": "to_transcriptome_bam",
+      "class": "file",
+      "patterns": [
+        "*.bam"
+      ],
+      "optional": true,
+      "help": ""
+    },
+    {
+      "name": "log_final_out",
+      "class": "file",
+      "patterns": [
+        "Log.final.out"
+      ],
+      "optional": true,
+      "help": ""
+    },
+    {
+      "name": "flagstat_out",
+      "class": "file",
+      "patterns": [
+        "*.flagstat.txt"
+      ],
+      "optional": true,
+      "help": ""
+    },
+    {
+      "name": "sj_tab_out",
+      "class": "file",
+      "patterns": [
+        "*.SJ.out.tab"
+      ],
+      "help": ""
+    },
+    {
+      "name": "chimeric_bam",
+      "class": "file",
+      "patterns": [
+        "*.Chimeric.out.bam"
+      ],
+      "optional": true,
+      "help": ""
+    },
+    {
+      "name": "chimeric_junction",
+      "class": "file",
+      "patterns": [
+        "*.Chimeric.out.junction"
+      ],
+      "optional": true,
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "execDepends": [
+      {
+        "name": "pigz"
+      },
+      {
+        "name": "openjdk-8-jre"
+      }
+    ],
+    "interpreter": "bash",
+    "file": "src/warden_star_aligner.sh",
+    "distribution": "Ubuntu",
+    "release": "16.04",
+    "version": "0"
+  },
+  "regionalOptions": {
+    "azure:westus": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "azure:mem4_ssd1_x8"
+        }
+      }
+    },
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem3_ssd1_x16"
+        }
+      }
+    }
+  },
+  "access": {
+    "project": "CONTRIBUTE",
+    "network": [
+      "*"
+    ]
+  },
+  "authorizedUsers": [
+    "org-stjude_cloud",
+    "org-stjude_cloud_app_runners"
+  ]
+}

@@ -1,0 +1,521 @@
+{
+  "name": "warden_fastq",
+  "title": "WARDEN (FASTQ)",
+  "summary": "This app runs the STAR Aligner, htseq-count, and voom/limma on RNA-SEQ data",
+  "dxapi": "1.0.0",
+  "version": "1.0.0",
+  "inputSpec": [
+    {
+      "name": "FASTQ_FILES",
+      "class": "array:file",
+      "optional": false,
+      "patterns": [
+        "*.fastq.gz",
+        "fastq.bz2",
+        ".fastq",
+        "*.fq.gz",
+        "*.fq.bz2",
+        "*.fq"
+      ]
+    },
+    {
+      "name": "sample_list",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.txt",
+        "*.xlsx"
+      ]
+    },
+    {
+      "name": "sequencing_strandedness",
+      "class": "string",
+      "choices": [
+        "Unstranded (e.g. Illumina TruSeq unstranded)",
+        "First strand synthesis (or reverse, e.g. TruSeq stranded, Illumina mRNA stranded)",
+        "Second strand synthesis (or forward e.g. SOLiD, ScriptSeq, NuGEN)"
+      ],
+      "optional": false,
+      "help": "RNA-SEQ protocol. If unknown select 'Unstranded'. For Hartwell RNA-SEQ select reverse"
+    },
+    {
+      "name": "Genome",
+      "class": "string",
+      "choices": [
+        "Human_hg38_v31 : hg38 Gencode v31",
+        "Human_hg19_v19 : hg19 Gencode v19",
+        "Human_hg38_v26_levels_1_2 : No alt, Gencode v26 (levels 1+2)",
+        "Human_hg19_v25_levels_1_2 : Gencode v25lift37 (levels 1+2)",
+        "Human_hg19_ERCC92 : Gencode v25lift37 (levels 1+2) with ERCC92 spike-ins",
+        "Mouse_mm10_v24 : Gencode  vM24",
+        "Mouse_mm10_v22 : Gencode  vM22",
+        "Mouse_mm10_v11 : Gencode  vM11",
+        "Mouse_mm9_v1 : Gencode vM1",
+        "Mouse_mm9_levels_1_2 : Gencode vM1 (levels 1+2)",
+        "Mouse_mm10_vM11_levels_1_2 : Gencode vM11 (levels 1+2)",
+        "D_Mel_BDGPr5 : Drosophila_melanogaster.BDGP5.75.gtf",
+        "D_Mel_BDGP6 : Drosophila_melanogaster.BDGP6.86.gtf"
+      ],
+      "help": "First element (ie Human_hg38_v31) is a reference ID for app."
+    },
+    {
+      "name": "generate_name_sorted_BAM",
+      "class": "boolean",
+      "default": false,
+      "group": "Advanced: Run control",
+      "help": ""
+    },
+    {
+      "name": "run_FastQC",
+      "class": "boolean",
+      "default": false,
+      "group": "Advanced: Run control",
+      "help": ""
+    },
+    {
+      "name": "run_coverage",
+      "class": "boolean",
+      "default": false,
+      "group": "Advanced: Run control",
+      "help": ""
+    },
+    {
+      "name": "run_limma",
+      "class": "boolean",
+      "default": true,
+      "group": "Advanced: Run control",
+      "help": ""
+    },
+    {
+      "name": "run_simple_dif_ex",
+      "class": "boolean",
+      "default": true,
+      "group": "Advanced: Run control",
+      "help": ""
+    },
+    {
+      "name": "calc_norm_factors_method",
+      "class": "string",
+      "choices": [
+        "none",
+        "RLE",
+        "upperquartile",
+        "TMM"
+      ],
+      "default": "TMM",
+      "help": "",
+      "group": "Advanced: LIMMA parameters"
+    },
+    {
+      "name": "filter_count_type",
+      "class": "string",
+      "choices": [
+        "CPM",
+        "raw_counts"
+      ],
+      "default": "CPM",
+      "help": "",
+      "group": "Advanced: LIMMA parameters"
+    },
+    {
+      "name": "filter_count",
+      "class": "int",
+      "default": 10,
+      "help": "",
+      "group": "Advanced: LIMMA parameters"
+    },
+    {
+      "name": "p_value_adjust",
+      "class": "string",
+      "choices": [
+        "none",
+        "holm",
+        "hochberg",
+        "hommel",
+        "bonferroni",
+        "BH",
+        "BY",
+        "fdr"
+      ],
+      "default": "fdr",
+      "help": "",
+      "group": "Advanced: LIMMA parameters"
+    },
+    {
+      "name": "feature_type",
+      "label": "Feature type to use from GTF file",
+      "class": "string",
+      "group": "Advanced: HTSeq Count",
+      "choices": [
+        "exon",
+        "gene",
+        "transcript",
+        "CDS",
+        "start_codon",
+        "stop_codon",
+        "UTR",
+        "Selenocysteine"
+      ],
+      "default": "gene"
+    },
+    {
+      "name": "id_attribute",
+      "label": "GTF attribute to use as ID",
+      "class": "string",
+      "group": "Advanced: HTSeq Count",
+      "choices": [
+        "gene_id",
+        "gene_name",
+        "transcript_id",
+        "transcript_name"
+      ],
+      "default": "gene_name"
+    },
+    {
+      "name": "mode",
+      "label": "Mode to handle overlapping reads",
+      "class": "string",
+      "group": "Advanced: HTSeq Count",
+      "choices": [
+        "union",
+        "intersection-strict",
+        "intersection-empty"
+      ],
+      "default": "union"
+    },
+    {
+      "name": "nonunique",
+      "label": "Mode for non-unique reads",
+      "class": "string",
+      "group": "Advanced: HTSeq Count",
+      "choices": [
+        "none",
+        "all"
+      ],
+      "default": "none"
+    },
+    {
+      "name": "secondary_alignments",
+      "label": "Mode for secondary alignments",
+      "class": "string",
+      "group": "Advanced: HTSeq Count",
+      "choices": [
+        "score",
+        "ignore"
+      ],
+      "default": "score"
+    },
+    {
+      "name": "supplementary_alignments",
+      "label": "Mode for supplementary alignments",
+      "class": "string",
+      "group": "Advanced: HTSeq Count",
+      "choices": [
+        "score",
+        "ignore"
+      ],
+      "default": "score"
+    },
+    {
+      "name": "htseq_instance",
+      "class": "string",
+      "group": "Advanced: HTSeq Count",
+      "choices": [
+        "azure:mem2_ssd1_x2",
+        "azure:mem4_ssd1_x2",
+        "azure:mem4_ssd1_x4",
+        "azure:mem4_ssd1_x8"
+      ],
+      "default": "azure:mem4_ssd1_x2"
+    },
+    {
+      "name": "two_pass_alignment",
+      "class": "boolean",
+      "default": false,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "star_instance",
+      "class": "string",
+      "choices": [
+        "azure:mem4_ssd1_x8",
+        "azure:mem4_ssd1_x16"
+      ],
+      "default": "azure:mem4_ssd1_x8",
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "mark_duplicates",
+      "class": "boolean",
+      "default": true,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "generate_transcriptome_BAM",
+      "class": "boolean",
+      "default": false,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "outSAMunmapped",
+      "class": "string",
+      "choices": [
+        "Within",
+        "None"
+      ],
+      "default": "Within",
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "outSAMattributes",
+      "class": "string",
+      "default": "NH HI AS nM NM MD XS",
+      "group": "Advanced: STAR alignment",
+      "help": "*WARNING* Field not checked before STAR run. Change from default at risk of failure."
+    },
+    {
+      "name": "outFilterMultimapNmax",
+      "class": "int",
+      "default": 20,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "outFilterMismatchNmax",
+      "class": "int",
+      "default": 10,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "alignIntronMax",
+      "class": "int",
+      "default": 500000,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "outSAMstrandField",
+      "class": "string",
+      "choices": [
+        "None",
+        "intronMotif"
+      ],
+      "default": "intronMotif",
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "chimSegmentMin",
+      "class": "int",
+      "default": 20,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "sjdbOverhang",
+      "class": "int",
+      "default": 100,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "chimJunctionOverhangMin",
+      "class": "int",
+      "default": 20,
+      "group": "Advanced: STAR alignment",
+      "help": ""
+    },
+    {
+      "name": "STAR_subsample_n_reads",
+      "class": "int",
+      "default": 100000000,
+      "group": "Advanced: STAR alignment",
+      "help": "Set to -1 to always map all reads. Default limit is sufficient for DE analysis and prevents run away costs."
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "parameters",
+      "class": "file"
+    },
+    {
+      "name": "forward_fastqc_htmls",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "forward_fastqc_zips",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "reverse_fastqc_htmls",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "reverse_fastqc_zips",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "star_bams",
+      "class": "array:file"
+    },
+    {
+      "name": "star_transcriptome_bams",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "flagstats",
+      "class": "array:file"
+    },
+    {
+      "name": "star_splice_junctions",
+      "class": "array:file"
+    },
+    {
+      "name": "star_chimeric_bams",
+      "class": "array:file"
+    },
+    {
+      "name": "star_chimeric_junctions",
+      "class": "array:file"
+    },
+    {
+      "name": "name_sorted_bams",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "htseqcounts",
+      "class": "array:file"
+    },
+    {
+      "name": "fpkms",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "fpkm_log2s",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "all_bigwigs",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "pos_bigwigs",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "neg_bigwigs",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "combined_flagstat",
+      "class": "file"
+    },
+    {
+      "name": "combined_counts",
+      "class": "file"
+    },
+    {
+      "name": "combined_fpkm",
+      "class": "file",
+      "optional": true
+    },
+    {
+      "name": "combined_fpkm_log2",
+      "class": "file",
+      "optional": true
+    },
+    {
+      "name": "limma_outfiles",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "limma_viewer",
+      "class": "record",
+      "optional": true
+    },
+    {
+      "name": "simple_DE_outfiles",
+      "class": "array:file",
+      "optional": true
+    },
+    {
+      "name": "simple_DE_viewer",
+      "class": "record",
+      "optional": true
+    },
+    {
+      "name": "bw_viewer",
+      "class": "record",
+      "optional": true
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/warden.sh",
+    "distribution": "Ubuntu",
+    "release": "16.04",
+    "version": "0",
+    "execDepends": [
+      {
+        "name": "dos2unix"
+      },
+      {
+        "name": "openpyxl",
+        "version": "2.6.4",
+        "package_manager": "pip"
+      }
+    ],
+    "restartableEntryPoints": "all"
+  },
+  "access": {
+    "project": "CONTRIBUTE",
+    "allProjects": "VIEW",
+    "developer": true,
+    "network": [
+      "*"
+    ]
+  },
+  "authorizedUsers": [
+    "org-stjude_cloud",
+    "org-stjude_cloud_app_runners"
+  ],
+  "regionalOptions": {
+    "azure:westus": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "azure:mem2_ssd1_x2"
+        }
+      }
+    },
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem2_ssd1_x2"
+        }
+      }
+    }
+  }
+}

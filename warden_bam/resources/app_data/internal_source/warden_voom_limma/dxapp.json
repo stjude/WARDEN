@@ -1,0 +1,191 @@
+{
+  "name": "warden_voom_limma",
+  "title": "WARDEN: LIMMA",
+  "summary": "Run VOOM normalization and LIMMA analysis",
+  "dxapi": "1.0.0",
+  "version": "1.0.0",
+  "inputSpec": [
+    {
+      "name": "input_count_file",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.txt"
+      ],
+      "help": ""
+    },
+    {
+      "name": "sample_list_file",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.txt"
+      ],
+      "help": ""
+    },
+    {
+      "name": "contrasts_file",
+      "class": "file",
+      "optional": true,
+      "patterns": [
+        "*.txt"
+      ],
+      "help": ""
+    },
+    {
+      "name": "contrasts",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "name": "calc_norm_factors_method",
+      "class": "string",
+      "optional": false,
+      "choices": [
+        "none",
+        "RLE",
+        "upperquartile",
+        "TMM"
+      ],
+      "default": "TMM",
+      "help": ""
+    },
+    {
+      "name": "filter_count_type",
+      "class": "string",
+      "optional": false,
+      "choices": [
+        "CPM",
+        "raw_counts"
+      ],
+      "default": "CPM",
+      "help": ""
+    },
+    {
+      "name": "filter_count",
+      "class": "int",
+      "optional": false,
+      "default": 10,
+      "help": ""
+    },
+    {
+      "name": "p_value_adjust",
+      "class": "string",
+      "optional": false,
+      "choices": [
+        "none",
+        "holm",
+        "hochberg",
+        "hommel",
+        "bonferroni",
+        "BH",
+        "BY",
+        "fdr"
+      ],
+      "default": "fdr",
+      "help": ""
+    },
+    {
+      "name": "difex_viewer",
+      "class": "file",
+      "optional": true,
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "out_files",
+      "label": "",
+      "help": "",
+      "class": "array:file",
+      "patterns": [
+        "*"
+      ]
+    },
+    {
+      "name": "viewer_bookmark",
+      "class": "record",
+      "optional": true
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 1
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/warden_voom_limma.sh",
+    "distribution": "Ubuntu",
+    "release": "16.04",
+    "version": "0",
+    "execDepends": [
+      {
+        "name": "gcc"
+      },
+      {
+        "name": "liblzma-dev"
+      },
+      {
+        "name": "fort77"
+      },
+      {
+        "name": "g++"
+      },
+      {
+        "name": "xorg-dev"
+      },
+      {
+        "name": "libreadline-dev"
+      },
+      {
+        "name": "gfortran"
+      },
+      {
+        "name": "libcairo2-dev"
+      },
+      {
+        "name": "libxt-dev"
+      },
+      {
+        "name": "gtk2.0"
+      },
+      {
+        "name": "libgtk2.0-dev"
+      },
+      {
+        "name": "openjdk-8-jre"
+      },
+      {
+        "name": "pyyaml",
+        "package_manager": "pip"
+      }
+    ]
+  },
+  "access": {
+    "project": "CONTRIBUTE",
+    "network": [
+      "*"
+    ]
+  },
+  "regionalOptions": {
+    "azure:westus": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "azure:mem1_ssd1_x4"
+        }
+      }
+    },
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x4"
+        }
+      }
+    }
+  },
+  "authorizedUsers": [
+    "org-stjude_cloud",
+    "org-stjude_cloud_app_runners"
+  ]
+}

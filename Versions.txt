@@ -1,0 +1,31 @@
+0.1.1
+White space in first line of sample list is now removed
+Limma/Voom now using R 3.3.2. 
+MA and Volcano plots generated with ggplot2 and ggrepel to avoid overlap of labels.
+Limma app removes Rplots.pdf and any back up text files
+Removed B and t statistic from limma results
+0.1.2 ##premature publish
+0.1.3
+Add back B and t statistic from Limma results
+MDS plot
+PRocessing of samplesheet with processFiles.py will now exit properly if fastq file not presented in sample sheet.
+Also fixed some error catching to print to the error file in processFiles.py
+0.1.5
+Default billing set to
+org-stjude_cloud
+GSEA input
+Worflow versions to allow set of samples to be sent through pipeline (and more than 20)
+sample sheet format changed (Comparisons line needs a '#' at beginning and can be anywhere)
+FPKM output
+For contrasts with not enough samples a 'simple' differential expression will be performed.  This is done on all samples/contrasts irrespective of LIMMA.  If 3 samples present, MDS will be performed.  Samples are normalized by log2(cpm)
+
+0.2.2
+Star version now being used STAR_2.5.3a
+Default parameters
+STAR --runMode alignReads --genomeDir /home/dnanexus/in/star_index_archive/STARINDEX --readFilesIn readFile1 readFile2          --outFileNamePrefix TEST_LARGE1. --outSAMunmapped Within          --runThreadN 8   --sjdbGTFfile annotation.gtf          --quantMode TranscriptomeSAM --sjdbOverhang 100          --outSAMattributes NH HI AS nM NM MD XS --outFilterMultimapNmax 20 --outFilterMismatchNmax 10          --alignIntronMax 500000      --chimSegmentMin 20 --chimJunctionOverhangMin 20          --outSAMstrandField intronMotif --outBAMcompression -1          --outSAMtype BAM SortedByCoordinate --outBAMsortingThreadN 8          --readFilesCommand zcat
+
+Custom genomes added back.  Now in 'Set Inputs'
+Run control to allow certain steps not be used
+
+Log2 FPKM and non log2 FPKM values shown (previously just log2, but was unclear that this was being used)
+
