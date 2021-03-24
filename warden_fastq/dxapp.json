@@ -1,6 +1,6 @@
 {
-  "name": "warden_fastq",
-  "title": "WARDEN (FastQ)",
+  "name": "stjude_warden_fastq",
+  "title": "WARDEN [FastQ] (St. Jude)",
   "summary": "This app runs the STAR Aligner, htseq-count, and voom/limma on RNA-SEQ data",
   "dxapi": "1.0.0",
   "version": "1.0.0",
@@ -502,6 +502,14 @@
     "org-stjude_cloud",
     "org-stjude_cloud_app_runners"
   ],
+  "openSource": true,
+  "developers": [
+    "user-andrew.frantz_stjude.org",
+    "user-lancepalmer"
+  ],
+  "details": {
+    "contactEmail": "andrew.frantz@stjude.org"
+  },
   "regionalOptions": {
     "azure:westus": {
       "systemRequirements": {
