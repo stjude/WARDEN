@@ -66,6 +66,13 @@
       "help": ""
     },
     {
+      "name": "generate_transcriptome_BAM",
+      "class": "boolean",
+      "default": false,
+      "group": "Advanced: Run control",
+      "help": ""
+    },
+    {
       "name": "run_FastQC",
       "class": "boolean",
       "default": false,
@@ -92,6 +99,13 @@
       "default": true,
       "group": "Advanced: Run control",
       "help": ""
+    },
+    {
+      "name": "STAR_subsample_n_reads",
+      "class": "int",
+      "default": 100000000,
+      "group": "Advanced: Run control",
+      "help": "Set to -1 to always map all reads. Default limit is sufficient for DE analysis and prevents run away costs."
     },
     {
       "name": "calc_norm_factors_method",
@@ -254,13 +268,6 @@
       "help": ""
     },
     {
-      "name": "generate_transcriptome_BAM",
-      "class": "boolean",
-      "default": false,
-      "group": "Advanced: STAR alignment",
-      "help": ""
-    },
-    {
       "name": "outSAMunmapped",
       "class": "string",
       "choices": [
@@ -330,13 +337,6 @@
       "default": 20,
       "group": "Advanced: STAR alignment",
       "help": ""
-    },
-    {
-      "name": "STAR_subsample_n_reads",
-      "class": "int",
-      "default": 100000000,
-      "group": "Advanced: STAR alignment",
-      "help": "Set to -1 to always map all reads. Default limit is sufficient for DE analysis and prevents run away costs."
     }
   ],
   "outputSpec": [
