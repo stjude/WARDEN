@@ -16,12 +16,12 @@ FASTQOBJECTLIST = open(fastq_object_list)
 
 
 def safe_name(name):
-    if name[0].isdigit() or (name[0] == "." and name[1].isdigit()):
+    if name[0].isdigit():
         name = "x" + name
     outname = ""
     for char in name:
-        if not char.isalnum() and char not in [".", "_"]:
-            outname += "."
+        if not char.isalnum() and char != "_":
+            outname += "_"
         else:
             outname += char
     return outname
