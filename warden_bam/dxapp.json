@@ -341,6 +341,9 @@
   "details": {
     "contactEmail": "andrew.frantz@stjude.org"
   },
+  "categories": [
+    "RNA-Seq"
+  ],
   "regionalOptions": {
     "azure:westus": {
       "systemRequirements": {

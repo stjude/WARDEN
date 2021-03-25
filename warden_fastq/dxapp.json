@@ -511,6 +511,10 @@
   "details": {
     "contactEmail": "andrew.frantz@stjude.org"
   },
+  "categories": [
+    "Read Mapping",
+    "RNA-Seq"
+  ],
   "regionalOptions": {
     "azure:westus": {
       "systemRequirements": {
