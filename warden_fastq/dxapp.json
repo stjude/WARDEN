@@ -502,6 +502,7 @@
     "org-stjude_cloud",
     "org-stjude_cloud_app_runners"
   ],
+  "billTo": "org-stjude_cloud",
   "openSource": true,
   "developers": [
     "user-andrew.frantz_stjude.org",
