@@ -16,7 +16,7 @@ FASTQOBJECTLIST = open(fastq_object_list)
 
 
 def safe_name(name):
-    if name[0].isdigit():
+    if not name[0].isalpha():
         name = "x" + name
     outname = ""
     for char in name:
