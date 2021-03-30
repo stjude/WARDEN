@@ -71,7 +71,7 @@ main() {
     upload_id=$(dx upload --path mds_plot.norm_cpm.png /R_simple_DE/mds_plot.norm_CPM.png --brief)
     dx tag "$upload_id" sjcp-result-file
     dx-jobutil-add-output --array out_files "$upload_id"
-    upload_id=$(dx upload --path AUXILIARY/ /R_simple_DE/CPM_normalized_values.txt --brief)
+    upload_id=$(dx upload --path DIFFERENTIAL_EXPRESSION/ /R_simple_DE/CPM_normalized_values.txt --brief)
     dx tag "$upload_id" sjcp-result-file
     dx-jobutil-add-output --array out_files "$upload_id"
 
