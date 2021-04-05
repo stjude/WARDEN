@@ -64,20 +64,6 @@
       "help": "First element (ie Human_hg38_v31) is a reference ID for app."
     },
     {
-      "name": "calcNormFactors_method",
-      "class": "string",
-      "optional": false,
-      "choices": [
-        "none",
-        "RLE",
-        "upperquartile",
-        "TMM"
-      ],
-      "default": "TMM",
-      "help": "",
-      "group": "Advanced: LIMMA parameters"
-    },
-    {
       "name": "filter_count_type",
       "class": "string",
       "optional": false,
@@ -94,6 +80,20 @@
       "class": "int",
       "optional": false,
       "default": 10,
+      "help": "",
+      "group": "Advanced: LIMMA parameters"
+    },
+    {
+      "name": "calcNormFactors_method",
+      "class": "string",
+      "optional": false,
+      "choices": [
+        "none",
+        "RLE",
+        "upperquartile",
+        "TMM"
+      ],
+      "default": "TMM",
       "help": "",
       "group": "Advanced: LIMMA parameters"
     },
