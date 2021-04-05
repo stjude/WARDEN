@@ -64,7 +64,7 @@ main() {
     fi
 
     {
-        echo -e "calc_norm_factors_method\t$calc_norm_factors_method"
+        echo -e "calcNormFactors_method\t$calcNormFactors_method"
         echo -e "filter_count_type\t$filter_count_type"
         echo -e "filter_count\t$filter_count"
         echo -e "p_value_adjust\t$p_value_adjust"

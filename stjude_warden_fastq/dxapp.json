@@ -109,7 +109,7 @@
       "help": "Set to -1 to always map all reads. Default limit is sufficient for DE analysis and prevents run away costs."
     },
     {
-      "name": "calc_norm_factors_method",
+      "name": "calcNormFactors_method",
       "class": "string",
       "choices": [
         "none",

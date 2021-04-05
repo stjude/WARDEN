@@ -97,7 +97,7 @@ main() {
         echo -e "Output\t$APPFOLDER"
         echo -e "folder_provided\t$FOLDER_PROVIDED"
         echo -e "app_version\t$appversion"
-        echo -e "calc_norm_factors_method\t$calc_norm_factors_method"
+        echo -e "calcNormFactors_method\t$calcNormFactors_method"
 
         echo -e "filter_count_type\t$filter_count_type"
         echo -e "filter_count\t$filter_count"

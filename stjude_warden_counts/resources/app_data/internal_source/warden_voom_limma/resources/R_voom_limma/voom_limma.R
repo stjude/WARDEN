@@ -44,7 +44,7 @@ print("command")
 print(command)
 contrast.matrix = eval(parse(text=command))
 
-dge <- calcNormFactors(dge,method=parameters["calc_norm_factors_method",1])
+dge <- calcNormFactors(dge,method=parameters["calcNormFactors_method",1])
 par(mar=c(1,1,1,1))
 png(filename="mean_variance.png",height=1500,width=1500,res=300)
 v <- voom(dge,design,plot=TRUE)

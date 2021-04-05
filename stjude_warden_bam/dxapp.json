@@ -64,7 +64,7 @@
       "help": "First element (ie Human_hg38_v31) is a reference ID for app."
     },
     {
-      "name": "calc_norm_factors_method",
+      "name": "calcNormFactors_method",
       "class": "string",
       "optional": false,
       "choices": [

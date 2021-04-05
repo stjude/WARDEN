@@ -11,7 +11,7 @@ stream = file(parameter_file, 'r')
 yaml_obj = (yaml.load(stream))
 
 
-calc_norm_factors_method = yaml_obj["calc_norm_factors_method"]
+calcNormFactors_method = yaml_obj["calcNormFactors_method"]
 contrasts = yaml_obj["contrasts"]
 contrast_list = []
 for c in contrasts:
@@ -27,7 +27,7 @@ filter_count_type = yaml_obj["filter_count_type"]
 print("filter_count\t" + filter_count)
 print("filter_count_type\t" + filter_count_type)
 print("contrasts\t" + contrast_string)
-print("calc_norm_factors_method\t" + calc_norm_factors_method)
+print("calcNormFactors_method\t" + calcNormFactors_method)
 print("p_value_adjust\t" + p_value_adjust)
 # RPARAM.close()
 

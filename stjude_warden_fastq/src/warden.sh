@@ -136,7 +136,7 @@ main() {
         echo -e "gene_length_file\t$gene_length_file"
         echo -e "app_version\t$appversion"
         echo -e "strandedness\t$sequencing_strandedness"
-        echo -e "calc_norm_factors_method\t$calc_norm_factors_method"
+        echo -e "calcNormFactors_method\t$calcNormFactors_method"
 
         echo -e "sjdbFileChrStartEnd\t$sjdbFileChrStartEnd"
         echo -e "two_pass_alignment\t$two_pass_alignment"
