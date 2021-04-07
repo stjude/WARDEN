@@ -39,7 +39,7 @@
       "class": "string",
       "choices": [
         "name",
-        "pos"
+        "position"
       ],
       "optional": false
     },

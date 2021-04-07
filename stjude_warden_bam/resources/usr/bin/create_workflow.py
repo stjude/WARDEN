@@ -93,7 +93,10 @@ def build_workflow():
         bam_id = samples[sample_name]
         bam_link = dxpy.dxlink(bam_id)
         htseq_input = {"input_bam": bam_link}
-        htseq_input["order"] = parameters["sort_order"]
+        if parameters["sort_order"] == "position":
+            htseq_input["order"] = "pos"
+        else:
+            htseq_input["order"] = "name"
         htseq_input["annotation_file"] = dxpy.dxlink({"project": gtf_project, "id": gtf_id})
         htseq_input["gene_length_file"] = dxpy.dxlink({"project": gene_length_project, "id": gene_length_id})
         htseq_input["prefix"] = sample_name
