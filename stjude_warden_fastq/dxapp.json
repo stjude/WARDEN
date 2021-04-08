@@ -2,7 +2,6 @@
   "name": "stjude_warden_fastq",
   "title": "WARDEN [FastQ] (St. Jude)",
   "summary": "This app runs the STAR Aligner, htseq-count, and voom/limma on RNA-SEQ data",
-  "description": "For the full documentation, visit the [St. Jude Cloud University](https://university.stjude.cloud/docs/genomics-platform/workflow-guides/warden/).",
   "dxapi": "1.0.0",
   "version": "1.0.0",
   "inputSpec": [
