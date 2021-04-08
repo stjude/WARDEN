@@ -523,13 +523,6 @@
           "instanceType": "azure:mem2_ssd1_x2"
         }
       }
-    },
-    "aws:us-east-1": {
-      "systemRequirements": {
-        "*": {
-          "instanceType": "mem2_ssd1_x2"
-        }
-      }
     }
   }
 }
