@@ -3,7 +3,7 @@
   "title": "warden_combine_flagstat",
   "summary": "warden_combine_flagstat",
   "dxapi": "1.0.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "inputSpec": [
     {
       "name": "flagstat_files",

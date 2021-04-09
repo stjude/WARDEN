@@ -3,7 +3,7 @@
   "title": "WARDEN [BAM] (St. Jude)",
   "summary": "This app runs htseq-count and voom/limma on RNA-SEQ data",
   "dxapi": "1.0.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "inputSpec": [
     {
       "name": "BAM_FILES",
