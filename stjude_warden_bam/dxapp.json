@@ -45,6 +45,7 @@
     {
       "name": "Genome",
       "class": "string",
+      "optional": false,
       "choices": [
         "Human_hg38_v31 : hg38 Gencode v31",
         "Human_hg19_v19 : hg19 Gencode v19",

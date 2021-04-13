@@ -11,7 +11,6 @@ out_samples_file = sys.argv[4]
 OUTCOUNTS = open(out_counts_file, 'w')
 OUTSAMPLES = open(out_samples_file, 'w')
 ERRORS = open("errors.txt", 'w')
-warnings = []
 
 SAMPLEFILES = open(sample_files_list)
 COUNTFILES = open(count_files_lists)
@@ -22,7 +21,7 @@ samples = {}
 sample_lines = {}
 feature_list = {}
 
-print "Looping SAMPLEFILES"
+print("Looping SAMPLEFILES")
 for sample_file in SAMPLEFILES:
 
     sample_file = sample_file.rstrip("\n")
@@ -54,10 +53,10 @@ for sample_file in SAMPLEFILES:
 
 counter_samples = {}
 got_feature_list = False
-print "done looping sample files\n"
-print "Samples:"
+print("done looping sample files\n")
+print("Samples:")
 print(samples)
-print ""
+print("")
 count_results = {}
 
 for count_file in COUNTFILES:
@@ -67,8 +66,7 @@ for count_file in COUNTFILES:
     count_header = count_header.rstrip("\n")
     count_header_list = count_header.split("\t")
     print(count_header)
-    feature_num = 0
-    for count_line in COUNTFILE:
+    for feature_num, count_line in enumerate(COUNTFILE):
         count_line = count_line.rstrip("\n")
         count_data = count_line.split("\t")
         feature = count_data[0]
@@ -76,14 +74,10 @@ for count_file in COUNTFILES:
             continue
         # if we arleady got a feature list .. check if same order
         if got_feature_list:
-            if feature_num not in feature_list:
-                print "FEATURE LISTS FROM COUNT FILES ARE OF DIFFERENT LENGTHS"
-                ERRORS.write("FEATURE LISTS FROM COUNT FILES ARE OF DIFFERENT LENGTHS")
-                sys.exit()
             old_feature = feature_list[feature_num]
             # features should be the same
             if feature != old_feature:
-                print "FEATURE LISTS BETWEEN COUNT FILES NOT THE SAME"
+                print("FEATURE LISTS BETWEEN COUNT FILES NOT THE SAME")
                 ERRORS.write("FEATURE LISTS BETWEEN COUNT FILES NOT THE SAME")
                 sys.exit()
         else:
@@ -94,20 +88,20 @@ for count_file in COUNTFILES:
         for sc in range(1, len(count_data)):
             sample = count_header_list[sc]
             if sample not in samples:
-                print "SAMPLE " + sample + " not in a sample sheet"
-                warnings.append("SAMPLE " + sample + " not in a sample sheet")
+                print("SAMPLE " + sample + " not in a sample sheet\nDoes the file have a header?")
+                ERRORS.write("SAMPLE " + sample + " not in a sample sheet\nDoes the file have a header?")
+                sys.exit()
 
             count = count_data[sc]
             if sample in count_results[feature]:
                 if count != count_results[feature][sample]:
-                    print "TWO SAMPLES WITH SAME NAME HAVE DIFFERENT COUNT VALUES"
+                    print("TWO SAMPLES WITH SAME NAME HAVE DIFFERENT COUNT VALUES")
                     ERRORS.write("TWO SAMPLES WITH SAME NAME HAVE DIFFERENT COUNT VALUES")
-                    sys.exit("")
+                    sys.exit()
             else:
                 count_results[feature][sample] = count
-        feature_num += 1
     got_feature_list = True
-print "done getting features"
+print("done getting features")
 samples_ordered = []
 for key, value in sorted(samples.iteritems(), key=lambda (k, v): (v, k)):
     samples_ordered.append(key)
@@ -132,9 +126,3 @@ OUTSAMPLES.write(sample_header + "\n")
 for s in samples_ordered:
     sample_line = sample_lines[s]
     OUTSAMPLES.write(sample_line + "\n")
-
-
-if len(warnings) > 0:
-    WARN = open("warnings.txt", 'w')
-    warn_lines = "\n".join(warnings)
-    WARN.write(warn_lines + "\n")

@@ -76,7 +76,7 @@ main() {
     elif [ "$sample_list_extension" == "xlsx" ]; then
         python /usr/bin/parse_excel_sample_list.py sample_list.xlsx > sample_list.txt
     else
-        dx-jobutil-report-error "Improper Sample List Extension. This should be a .txt or .xlsx file" appError
+        dx-jobutil-report-error "Improper Sample List Extension. This should be a .txt or .xlsx file" AppError
     fi
 
     printf '%s\n' "${BAM_FILES_path[@]}" > bam_list.txt
@@ -91,7 +91,7 @@ main() {
     IS_PROCESSFILE_ERR=${#PROCESSFILE_ERR} #get size
     if [ "$IS_PROCESSFILE_ERR" -gt 0 ]; then
         echo "Error: $PROCESSFILE_ERR"
-        dx-jobutil-report-error "$PROCESSFILE_ERR" appError
+        dx-jobutil-report-error "$PROCESSFILE_ERR" AppError
     fi
 
     final_sample_list_id=$(dx upload --brief cleaned_sample_list.txt)
@@ -120,7 +120,7 @@ main() {
     echo ""
     if [ "$num_samples" -gt 64 ]; then
         echo "Error: Number of samples greater than 64.  The app limits samples to 64"
-        dx-jobutil-report-error "Number of samples greater than 64.  The app limits samples to 64" appError
+        dx-jobutil-report-error "Number of samples greater than 64.  The app limits samples to 64" AppError
     fi
     ###############
     {

@@ -112,7 +112,7 @@ def build_workflow():
                 }
             },
         ]
-    simple_DE_input = {"input_count_file": dxpy.dxlink({"stage": combine_counts_stage_id, "outputField": "count_file"}), "sample_list_file": dxpy.dxlink(final_sample_list_id), "contrasts_file": dxpy.dxlink(comparisons_all_id), "difex_viewer": limma_viewer_link}
+    simple_DE_input = {"input_count_file": dxpy.dxlink({"stage": combine_counts_stage_id, "outputField": "count_file"}), "sample_list_file": dxpy.dxlink(final_sample_list_id), "contrasts_file": dxpy.dxlink(comparisons_all_id)}
     if parameters["limma_DE_viewer"] != "None":
         simple_DE_input["difex_viewer"] = limma_viewer_link
     simple_DE_stage_id = wf.add_stage(simple_DE_applet, stage_input=simple_DE_input, instance_type="azure:mem1_ssd1_x4", name="SIMPLE DIFFERENTIAL_EXPRESSION")

@@ -38,9 +38,11 @@
         "Mouse_mm9_levels_1_2 : Gencode vM1 (levels 1+2)",
         "Mouse_mm10_vM11_levels_1_2 : Gencode vM11 (levels 1+2)",
         "D_Mel_BDGPr5 : Drosophila_melanogaster.BDGP5.75.gtf",
-        "D_Mel_BDGP6 : Drosophila_melanogaster.BDGP6.86.gtf"
+        "D_Mel_BDGP6 : Drosophila_melanogaster.BDGP6.86.gtf",
+        "None"
       ],
-      "optional": true,
+      "default": "None",
+      "optional": false,
       "help": "Selection determines preloaded viewer. If left blank, no viewer shortcut will be created. First element (ie Human_hg38_v31) is a reference ID for app."
     },
     {

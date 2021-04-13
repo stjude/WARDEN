@@ -93,6 +93,11 @@ for line in SAMPLELIST:
         sys.exit()
 
     sample_name = safe_name(line_data[0])
+    if sample_name != line_data[0]:
+        PROCESSERRORS.write("Malformed sample name: " + line_data[0] + "\n")
+        PROCESSERRORS.close()
+        sys.exit()
+
     read_file1 = line_data[2]
 
     if read_file1 in fastqs:
