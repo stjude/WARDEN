@@ -26,6 +26,7 @@
       "name": "Genome",
       "class": "string",
       "choices": [
+        "None",
         "Human_hg38_v31 : hg38 Gencode v31",
         "Human_hg19_v19 : hg19 Gencode v19",
         "Human_hg38_v26_levels_1_2 : No alt, Gencode v26 (levels 1+2)",
@@ -38,8 +39,7 @@
         "Mouse_mm9_levels_1_2 : Gencode vM1 (levels 1+2)",
         "Mouse_mm10_vM11_levels_1_2 : Gencode vM11 (levels 1+2)",
         "D_Mel_BDGPr5 : Drosophila_melanogaster.BDGP5.75.gtf",
-        "D_Mel_BDGP6 : Drosophila_melanogaster.BDGP6.86.gtf",
-        "None"
+        "D_Mel_BDGP6 : Drosophila_melanogaster.BDGP6.86.gtf"
       ],
       "default": "None",
       "optional": false,
