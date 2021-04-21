@@ -117,11 +117,6 @@ main() {
 
     num_samples=$(($(wc -l < cleaned_sample_list.txt) - 1))
     echo "Number of samples: $num_samples"
-    echo ""
-    if [ "$num_samples" -gt 64 ]; then
-        echo "Error: Number of samples greater than 64.  The app limits samples to 64"
-        dx-jobutil-report-error "Number of samples greater than 64.  The app limits samples to 64" AppError
-    fi
     ###############
     {
         echo -e "project\t$DX_PROJECT_CONTEXT_ID"
