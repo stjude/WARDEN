@@ -1,6 +1,6 @@
 #!/bin/bash
 # shellcheck disable=SC2154
-# warden_bw_to_viewer 1.0.2
+# warden_bw_to_viewer 1.0.3
 set -e -o -x
 
 main() {

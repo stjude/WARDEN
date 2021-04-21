@@ -1,6 +1,6 @@
 #!/bin/bash
 # shellcheck disable=SC2154
-# warden_combine_sj_out 1.0.2
+# warden_combine_sj_out 1.0.3
 
 main() {
     wget -nv "https://github.com/arq5x/bedtools2/releases/download/v2.29.2/bedtools.static.binary"

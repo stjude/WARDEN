@@ -1,5 +1,5 @@
 #!/bin/bash
-# warden_voom_limma 1.0.2
+# warden_voom_limma 1.0.3
 # shellcheck disable=SC2154
 set -e -x -o
 
