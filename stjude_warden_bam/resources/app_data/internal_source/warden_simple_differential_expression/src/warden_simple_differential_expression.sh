@@ -1,5 +1,5 @@
 #!/bin/bash
-# warden_simple_differential_expression 1.0.3
+# warden_simple_differential_expression 1.0.4
 # shellcheck disable=SC2154
 set -e -x -o
 
