@@ -94,7 +94,7 @@ for line in SAMPLELIST:
 
     sample_name = safe_name(line_data[0])
     read_file1 = line_data[2]
-    if num_cols < 3:
+    if num_cols < 4:
         read_file2 = '-'
     else:
         read_file2 = line_data[3]

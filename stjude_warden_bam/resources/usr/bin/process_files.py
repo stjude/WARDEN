@@ -78,7 +78,7 @@ for line in SAMPLELIST:
             PROCESSERRORS.write("The sample list file does not have at least three columns:" + header + "\n")
             PROCESSERRORS.close()
             sys.exit()
-        FINALLIST.write("\t".join(header_split) + "\n")
+        FINALLIST.write("\t".join(header_split[:3]) + "\n")
         line_counter += 1
         continue
 
