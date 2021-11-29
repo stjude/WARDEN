@@ -152,6 +152,7 @@ main() {
         echo -e "secondary_alignments\t$secondary_alignments"
         echo -e "supplementary_alignments\t$supplementary_alignments"
         echo -e "htseq_instance\t$htseq_instance"
+        echo -e "combine_counts_instance\t$combine_counts_instance"
     } > workflow_parameter_file.txt
 
     dx mkdir -p "$DX_PROJECT_CONTEXT_ID:$APPFOLDER/AUXILIARY"

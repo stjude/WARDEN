@@ -61,7 +61,7 @@
         "D_Mel_BDGPr5 : Drosophila_melanogaster.BDGP5.75.gtf",
         "D_Mel_BDGP6 : Drosophila_melanogaster.BDGP6.86.gtf"
       ],
-      "help": "First element (ie Human_hg38_v31) is a reference ID for app."
+      "help": "First element (ie Human_hg38_v31) is a reference ID for the app."
     },
     {
       "name": "filter_count_type",
@@ -201,6 +201,17 @@
         "azure:mem4_ssd1_x8"
       ],
       "default": "azure:mem4_ssd1_x2"
+    },
+    {
+      "name": "combine_counts_instance",
+      "class": "string",
+      "group": "Advanced: HTSeq Count",
+      "choices": [
+        "azure:mem2_ssd1_x2",
+        "azure:mem4_ssd1_x2",
+        "azure:mem4_ssd1_x4"
+      ],
+      "default": "azure:mem2_ssd1_x2"
     },
     {
       "name": "run_coverage",

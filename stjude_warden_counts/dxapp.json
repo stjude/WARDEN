@@ -43,7 +43,18 @@
       ],
       "default": "None",
       "optional": false,
-      "help": "Selection determines preloaded viewer. If left blank, no viewer shortcut will be created. First element (ie Human_hg38_v31) is a reference ID for app."
+      "help": "Selection determines preloaded viewer. If left blank, no viewer shortcut will be created. First element (ie Human_hg38_v31) is a reference ID for the app."
+    },
+    {
+      "name": "combine_counts_instance",
+      "class": "string",
+      "group": "Advanced",
+      "choices": [
+        "azure:mem2_ssd1_x2",
+        "azure:mem4_ssd1_x2",
+        "azure:mem4_ssd1_x4"
+      ],
+      "default": "azure:mem2_ssd1_x2"
     },
     {
       "name": "filter_count_type",

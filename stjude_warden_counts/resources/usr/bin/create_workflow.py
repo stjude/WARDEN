@@ -67,7 +67,7 @@ def build_workflow():
     htseq_results = [dxpy.dxlink(count_id) for count_id in samples.values()]
 
     combine_input = {"count_files": htseq_results, "name_value": "htseq", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, name="COMBINE HTSEQ")
+    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, instance_type=parameters["combine_counts_instance"], name="COMBINE HTSEQ")
     wf_outputs += [
         {
             "name": "combined_counts",

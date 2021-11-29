@@ -95,6 +95,7 @@ main() {
         echo -e "folder_provided\t$FOLDER_PROVIDED"
         echo -e "app_version\t$appversion"
         echo -e "calcNormFactors_method\t$calcNormFactors_method"
+        echo -e "combine_counts_instance\t$combine_counts_instance"
 
         echo -e "filter_count_type\t$filter_count_type"
         echo -e "filter_count\t$filter_count"

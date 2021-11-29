@@ -220,7 +220,7 @@ def build_workflow():
         sample_num += 1
 
     combine_input = {"count_files": htseq_results, "name_value": "htseq", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, name="COMBINE HTSEQ")
+    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, instance_type=parameters["combine_counts_instance"], name="COMBINE HTSEQ")
     wf_outputs += [
         {
             "name": "combined_counts",
@@ -235,9 +235,9 @@ def build_workflow():
     ]
     if parameters["id_attribute"] == "gene_name":
         combine_fpkm_input = {"count_files": fpkm_results, "name_value": "fpkm", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-        combine_fpkm_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_fpkm_input, name="COMBINE FPKM")
+        combine_fpkm_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_fpkm_input, instance_type=parameters["combine_counts_instance"], name="COMBINE FPKM")
         combine_fpkm_log2_input = {"count_files": fpkm_log2_results, "name_value": "fpkm.log2", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-        combine_fpkm_log2_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_fpkm_log2_input, name="COMBINE FPKMlog2")
+        combine_fpkm_log2_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_fpkm_log2_input, instance_type=parameters["combine_counts_instance"], name="COMBINE FPKMlog2")
         wf_outputs += [
             {
                 "name": "combined_fpkm",
