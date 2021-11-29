@@ -67,7 +67,7 @@ def build_workflow():
     htseq_results = [dxpy.dxlink(count_id) for count_id in samples.values()]
 
     combine_input = {"count_files": htseq_results, "name_value": "htseq", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, instance_type="azure:mem2_ssd1_x1", name="COMBINE HTSEQ")
+    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, name="COMBINE HTSEQ")
     wf_outputs += [
         {
             "name": "combined_counts",
@@ -89,7 +89,7 @@ def build_workflow():
         limma_input = {"input_count_file": dxpy.dxlink({"stage": combine_counts_stage_id, "outputField": "count_file"}), "sample_list_file": dxpy.dxlink(final_sample_list_id), "calcNormFactors_method": parameters["calcNormFactors_method"], "filter_count_type": parameters["filter_count_type"], "filter_count": int(parameters["filter_count"]), "p_value_adjust": parameters["p_value_adjust"], "contrasts_file": dxpy.dxlink(comparisons_limma_id)}
         if parameters["limma_DE_viewer"] != "None":
             limma_input["difex_viewer"] = limma_viewer_link
-        limma_stage_id = wf.add_stage(limma_applet, stage_input=limma_input, instance_type="azure:mem1_ssd1_x4", name="LIMMA")
+        limma_stage_id = wf.add_stage(limma_applet, stage_input=limma_input, name="LIMMA")
         wf_outputs += [
             {
                 "name": "limma_outfiles",
@@ -115,7 +115,7 @@ def build_workflow():
     simple_DE_input = {"input_count_file": dxpy.dxlink({"stage": combine_counts_stage_id, "outputField": "count_file"}), "sample_list_file": dxpy.dxlink(final_sample_list_id), "contrasts_file": dxpy.dxlink(comparisons_all_id)}
     if parameters["limma_DE_viewer"] != "None":
         simple_DE_input["difex_viewer"] = limma_viewer_link
-    simple_DE_stage_id = wf.add_stage(simple_DE_applet, stage_input=simple_DE_input, instance_type="azure:mem1_ssd1_x4", name="SIMPLE DIFFERENTIAL_EXPRESSION")
+    simple_DE_stage_id = wf.add_stage(simple_DE_applet, stage_input=simple_DE_input, name="SIMPLE DIFFERENTIAL_EXPRESSION")
     wf_outputs += [
         {
             "name": "simple_DE_outfiles",

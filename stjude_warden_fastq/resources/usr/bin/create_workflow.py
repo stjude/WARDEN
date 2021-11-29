@@ -153,7 +153,7 @@ def build_workflow():
 
             sj_out_files_arr.append(dxpy.dxlink({"stage": first_align_stage_id, "outputField": "sj_tab_out"}))
         combine_sj_out_input = {"sj_out_files": sj_out_files_arr}
-        combine_sj_out_stage_pass1_id = wf.add_stage(combine_sj_tab_applet, stage_input=combine_sj_out_input, instance_type="azure:mem2_ssd1_x1", name="COMBINE SJ OUT PASS1", folder="COMBINED_JUNCTIONS_PASS1")
+        combine_sj_out_stage_pass1_id = wf.add_stage(combine_sj_tab_applet, stage_input=combine_sj_out_input, name="COMBINE SJ OUT PASS1", folder="COMBINED_JUNCTIONS_PASS1")
         parameters["pass1_sj_out"] = dxpy.dxlink({"stage": combine_sj_out_stage_pass1_id, "outputField": "combined_sj_out"})
 
     for sample_name in samples:
@@ -161,7 +161,7 @@ def build_workflow():
         forward_link = dxpy.dxlink(forward_id)
         if parameters["run_FastQC"] == 'true':
             forward_input = {"fastq_input": forward_link}
-            fq_stage_id = wf.add_stage(fastqc_applet, stage_input=forward_input, instance_type="azure:mem2_ssd1_x2", folder="FASTQC", name=sample_name + ":Forward FASTQC")
+            fq_stage_id = wf.add_stage(fastqc_applet, stage_input=forward_input, folder="FASTQC", name=sample_name + ":Forward FASTQC")
             wf_outputs += [
                 {
                     "name": sample_name + "_forward_fastqc_html",
@@ -214,7 +214,7 @@ def build_workflow():
             reverse_link = dxpy.dxlink(reverse_id)
             if parameters["run_FastQC"] == 'true':
                 rev_input = {"fastq_input": reverse_link}
-                rev_fq_stage_id = wf.add_stage(fastqc_applet, stage_input=rev_input, instance_type="azure:mem2_ssd1_x2", folder="FASTQC", name=sample_name + ":Reverse FASTQC")
+                rev_fq_stage_id = wf.add_stage(fastqc_applet, stage_input=rev_input, folder="FASTQC", name=sample_name + ":Reverse FASTQC")
                 wf_outputs += [
                     {
                         "name": sample_name + "_reverse_fastqc_html",
@@ -322,7 +322,7 @@ def build_workflow():
 
         if parameters["generate_name_sorted_BAM"] == "true":
             sort_input = {"input_bam": dxpy.dxlink({"stage": align_stage_id, "outputField": "sorted_by_coord_bam"})}
-            sort_stage_id = wf.add_stage(sort_bam_applet, stage_input=sort_input, instance_type="azure:mem2_ssd1_x2", name=sample_name + ":NAME SORT BAM", folder="STAR")
+            sort_stage_id = wf.add_stage(sort_bam_applet, stage_input=sort_input, name=sample_name + ":NAME SORT BAM", folder="STAR")
             wf_outputs += [
                 {
                     "name": sample_name + "_name_sorted_bam",
@@ -397,13 +397,13 @@ def build_workflow():
             gcb_input["genome_sizes_file"] = dxpy.dxlink({"project": genome_length_project, "id": genome_length_id})
             gcb_input["strandedness"] = parameters["strandedness"]
             gcb_input["output_prefix"] = sample_name
-            gcb_stage_id = wf.add_stage(genome_cov_applet, stage_input=gcb_input, instance_type="azure:mem3_ssd1_x8", name=sample_name + ":COVERAGE", folder="COVERAGE")
+            gcb_stage_id = wf.add_stage(genome_cov_applet, stage_input=gcb_input, name=sample_name + ":COVERAGE", folder="COVERAGE")
 
             bg2bw_all_input = {}
             bg2bw_all_input["bedgraph_file"] = dxpy.dxlink({"stage": gcb_stage_id, "outputField": "all_coverage_file"})
             bg2bw_all_input["genome_sizes_file"] = dxpy.dxlink({"project": genome_length_project, "id": genome_length_id})
             bg2bw_all_input["output_prefix"] = sample_name
-            bg2bw_all_stage_id = wf.add_stage(bigwig_applet, stage_input=bg2bw_all_input, instance_type="azure:mem2_ssd1_x4", name=sample_name + ":BED To BW-ALL", folder="BIGWIG")
+            bg2bw_all_stage_id = wf.add_stage(bigwig_applet, stage_input=bg2bw_all_input, name=sample_name + ":BED To BW-ALL", folder="BIGWIG")
             bigwig_files.append(dxpy.dxlink({"stage": bg2bw_all_stage_id, "outputField": "bigwig"}))
             wf_outputs += [
                 {
@@ -423,7 +423,7 @@ def build_workflow():
                 bg2bw_pos_input["bedgraph_file"] = dxpy.dxlink({"stage": gcb_stage_id, "outputField": "pos_coverage_file"})
                 bg2bw_pos_input["genome_sizes_file"] = dxpy.dxlink({"project": genome_length_project, "id": genome_length_id})
                 bg2bw_pos_input["output_prefix"] = sample_name
-                bg2bw_pos_stage_id = wf.add_stage(bigwig_applet, stage_input=bg2bw_pos_input, instance_type="azure:mem2_ssd1_x4", name=sample_name + ":BED To BW-POS", folder="BIGWIG")
+                bg2bw_pos_stage_id = wf.add_stage(bigwig_applet, stage_input=bg2bw_pos_input, name=sample_name + ":BED To BW-POS", folder="BIGWIG")
                 wf_outputs += [
                     {
                         "name": sample_name + "_pos_bigwig",
@@ -441,7 +441,7 @@ def build_workflow():
                 bg2bw_neg_input["bedgraph_file"] = dxpy.dxlink({"stage": gcb_stage_id, "outputField": "neg_coverage_file"})
                 bg2bw_neg_input["genome_sizes_file"] = dxpy.dxlink({"project": genome_length_project, "id": genome_length_id})
                 bg2bw_neg_input["output_prefix"] = sample_name
-                bg2bw_neg_stage_id = wf.add_stage(bigwig_applet, stage_input=bg2bw_neg_input, instance_type="azure:mem2_ssd1_x4", name=sample_name + ":BED To BW-NEG", folder="BIGWIG")
+                bg2bw_neg_stage_id = wf.add_stage(bigwig_applet, stage_input=bg2bw_neg_input, name=sample_name + ":BED To BW-NEG", folder="BIGWIG")
                 wf_outputs += [
                     {
                         "name": sample_name + "_neg_bigwig",
@@ -460,7 +460,7 @@ def build_workflow():
         sample_num += 1
 
     combine_input = {"count_files": htseq_results, "name_value": "htseq", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, instance_type="azure:mem2_ssd1_x1", name="COMBINE HTSEQ")
+    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, name="COMBINE HTSEQ")
     wf_outputs += [
         {
             "name": "combined_counts",
@@ -475,9 +475,9 @@ def build_workflow():
     ]
     if parameters["id_attribute"] == "gene_name":
         combine_fpkm_input = {"count_files": fpkm_results, "name_value": "fpkm", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-        combine_fpkm_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_fpkm_input, instance_type="azure:mem2_ssd1_x1", name="COMBINE FPKM")
+        combine_fpkm_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_fpkm_input, name="COMBINE FPKM")
         combine_fpkm_log2_input = {"count_files": fpkm_log2_results, "name_value": "fpkm.log2", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-        combine_fpkm_log2_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_fpkm_log2_input, instance_type="azure:mem2_ssd1_x1", name="COMBINE FPKMlog2")
+        combine_fpkm_log2_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_fpkm_log2_input, name="COMBINE FPKMlog2")
         wf_outputs += [
             {
                 "name": "combined_fpkm",
@@ -502,7 +502,7 @@ def build_workflow():
         ]
 
     combine_flagstat_input = {"flagstat_files": flagstat_files_arr, "sample_list": dxpy.dxlink(final_sample_list_id)}
-    combine_flagstat_stage_id = wf.add_stage(combine_flagstat_applet, stage_input=combine_flagstat_input, instance_type="azure:mem2_ssd1_x1", name="COMBINE FLAGSTAT", folder="STAR")
+    combine_flagstat_stage_id = wf.add_stage(combine_flagstat_applet, stage_input=combine_flagstat_input, name="COMBINE FLAGSTAT", folder="STAR")
     wf_outputs += [
         {
             "name": "combined_flagstat",
@@ -520,7 +520,7 @@ def build_workflow():
         bw_project, bw_file = parameters["BW_VIEWER"].split(":")
         viewer_link = dxpy.dxlink({"project": bw_project, "id": bw_file})
         bw_viewer_input = {"viewer": viewer_link, "bigwig_files": bigwig_files}
-        bw_viewer_stage_id = wf.add_stage(bw_viewer_applet, stage_input=bw_viewer_input, instance_type="azure:mem2_ssd1_x1", name="BIGWIG_VIEWER", folder="BIGWIG")
+        bw_viewer_stage_id = wf.add_stage(bw_viewer_applet, stage_input=bw_viewer_input, name="BIGWIG_VIEWER", folder="BIGWIG")
         wf_outputs += [
             {
                 "name": "bw_viewer",
@@ -542,7 +542,7 @@ def build_workflow():
         limma_input = {"input_count_file": dxpy.dxlink({"stage": combine_counts_stage_id, "outputField": "count_file"}), "sample_list_file": dxpy.dxlink(final_sample_list_id), "calcNormFactors_method": parameters["calcNormFactors_method"], "filter_count_type": parameters["filter_count_type"], "filter_count": int(parameters["filter_count"]), "p_value_adjust": parameters["p_value_adjust"], "contrasts_file": dxpy.dxlink(comparisons_limma_id)}
         if parameters["limma_DE_viewer"] != "None":
             limma_input["difex_viewer"] = limma_viewer_link
-        limma_stage_id = wf.add_stage(limma_applet, stage_input=limma_input, instance_type="azure:mem1_ssd1_x4", name="LIMMA")
+        limma_stage_id = wf.add_stage(limma_applet, stage_input=limma_input, name="LIMMA")
         wf_outputs += [
             {
                 "name": "limma_outfiles",
@@ -569,7 +569,7 @@ def build_workflow():
         simple_DE_input = {"input_count_file": dxpy.dxlink({"stage": combine_counts_stage_id, "outputField": "count_file"}), "sample_list_file": dxpy.dxlink(final_sample_list_id), "contrasts_file": dxpy.dxlink(comparisons_all_id), "difex_viewer": limma_viewer_link}
         if parameters["limma_DE_viewer"] != "None":
             simple_DE_input["difex_viewer"] = limma_viewer_link
-        simple_DE_stage_id = wf.add_stage(simple_DE_applet, stage_input=simple_DE_input, instance_type="azure:mem1_ssd1_x4", name="SIMPLE DIFFERENTIAL_EXPRESSION")
+        simple_DE_stage_id = wf.add_stage(simple_DE_applet, stage_input=simple_DE_input, name="SIMPLE DIFFERENTIAL_EXPRESSION")
         wf_outputs += [
             {
                 "name": "simple_DE_outfiles",
