@@ -107,10 +107,6 @@
       },
       {
         "name": "openjdk-8-jre"
-      },
-      {
-        "name": "pyyaml",
-        "package_manager": "pip"
       }
     ]
   },
