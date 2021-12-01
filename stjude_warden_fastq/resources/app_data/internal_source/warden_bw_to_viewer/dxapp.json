@@ -31,7 +31,7 @@
   ],
   "timeoutPolicy": {
     "*": {
-      "hours": 1
+      "hours": 4
     }
   },
   "runSpec": {
