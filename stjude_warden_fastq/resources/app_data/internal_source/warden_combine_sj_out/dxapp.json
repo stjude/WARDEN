@@ -35,7 +35,7 @@
     "interpreter": "bash",
     "file": "src/warden_combine_sj_out.sh",
     "distribution": "Ubuntu",
-    "release": "16.04",
+    "release": "20.04",
     "version": "0"
   },
   "access": {
