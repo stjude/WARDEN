@@ -45,20 +45,19 @@ for line in SAMPLELIST:
     m4 = re.search("(\d+)\s+\+\s+(\d+)\s+mapped \((\S+)", flag_lines)
     mapped = m4.group(1)
     duplicate_perc = Decimal(duplicates) / Decimal(mapped)
-    duplicate_perc = "%.4f" % (duplicate_perc * 100)
+    duplicate_perc = duplicate_perc * 100
     per_mapped = m4.group(3)
     m5 = re.search("(\d+)\s+\+\s+(\d+)\s+paired in sequencing", flag_lines)
     paired = m5.group(1)
     out_data = (
         sample_name,
-        totalReads,
-        totalQCPassed,
-        totalQCNotPassed,
-        duplicates,
-        duplicate_perc,
+        str(totalReads),
+        str(totalQCPassed),
+        str(totalQCNotPassed),
+        str(duplicates),
+        str(duplicate_perc),
         mapped,
         per_mapped,
         paired,
     )
-    out_data = map(str, out_data)
     OUT.write("\t".join(out_data) + "\n")
