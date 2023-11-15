@@ -30,7 +30,9 @@ def safe_name(name):
 def process_comparisons(comparison_line, comparison_list):
     comparison_split = comparison_line.strip().split("=")
     if len(comparison_split) != 2:
-        PROCESSERRORS.write("Comparison line should be of following format: `#COMPARISONS=PHENOTYPE1-PHENOTYPE2` or `#COMPARISONS=PHENOTYPE1-PHENOTYPE2,PHENOTYPE1-PHENOTYPE3`")
+        PROCESSERRORS.write(
+            "Comparison line should be of following format: `#COMPARISONS=PHENOTYPE1-PHENOTYPE2` or `#COMPARISONS=PHENOTYPE1-PHENOTYPE2,PHENOTYPE1-PHENOTYPE3`"
+        )
         PROCESSERRORS.close()
         sys.exit()
     _, comparison_list_string = comparison_split
@@ -38,7 +40,9 @@ def process_comparisons(comparison_line, comparison_list):
     for comparison in comparisons:
         comparison_split = comparison.split("-")
         if len(comparison_split) != 2:
-            PROCESSERRORS.write("Comparison line should be of following format: `#COMPARISONS=PHENOTYPE1-PHENOTYPE2` or `#COMPARISONS=PHENOTYPE1-PHENOTYPE2,PHENOTYPE1-PHENOTYPE3`")
+            PROCESSERRORS.write(
+                "Comparison line should be of following format: `#COMPARISONS=PHENOTYPE1-PHENOTYPE2` or `#COMPARISONS=PHENOTYPE1-PHENOTYPE2,PHENOTYPE1-PHENOTYPE3`"
+            )
             PROCESSERRORS.close()
             sys.exit()
         comparison_list.append(comparison_split)
@@ -51,11 +55,11 @@ for line in FASTQLIST:
     fastq_file_object = FASTQOBJECTLIST.readline().rstrip("\n")
     fastq_objects[fastq_file] = fastq_file_object
 
-FASTQSAMPLELIST = open("fastq_file_list.txt", 'w')
-FINALLIST = open("cleaned_sample_list.txt", 'w')
-COMPARISONLIMMA = open("comparisons_limma.txt", 'w')
-COMPARISON_ALL = open("comparisons_simple_DE.txt", 'w')
-PROCESSERRORS = open("process_files_errors.txt", 'w')
+FASTQSAMPLELIST = open("fastq_file_list.txt", "w")
+FINALLIST = open("cleaned_sample_list.txt", "w")
+COMPARISONLIMMA = open("comparisons_limma.txt", "w")
+COMPARISON_ALL = open("comparisons_simple_DE.txt", "w")
+PROCESSERRORS = open("process_files_errors.txt", "w")
 
 comparison_list = []
 fastqs = []
@@ -66,7 +70,10 @@ for line in SAMPLELIST:
     if len("".join(line.split())) == 0:
         continue
     if line[0] == "#":
-        if line[0:13].upper() == "#COMPARISONS=" or line[0:12].upper() == "#COMPARISON=":
+        if (
+            line[0:13].upper() == "#COMPARISONS="
+            or line[0:12].upper() == "#COMPARISON="
+        ):
             process_comparisons(line, comparison_list)
         continue
 
@@ -75,7 +82,11 @@ for line in SAMPLELIST:
         header_split = header.split()
         header_count = len(header_split)
         if header_count < 3:
-            PROCESSERRORS.write("The sample list file does not have at least three columns:" + header + "\n")
+            PROCESSERRORS.write(
+                "The sample list file does not have at least three columns:"
+                + header
+                + "\n"
+            )
             PROCESSERRORS.close()
             sys.exit()
         FINALLIST.write("\t".join(header_split) + "\n")
@@ -88,14 +99,18 @@ for line in SAMPLELIST:
     if num_cols == 0:
         continue
     if num_cols < 3:
-        PROCESSERRORS.write("Line " + line_counter + " of the sample list does not have at least three columns\n")
+        PROCESSERRORS.write(
+            "Line "
+            + line_counter
+            + " of the sample list does not have at least three columns\n"
+        )
         PROCESSERRORS.close()
         sys.exit()
 
     sample_name = safe_name(line_data[0])
     read_file1 = line_data[2]
     if num_cols < 4:
-        read_file2 = '-'
+        read_file2 = "-"
     else:
         read_file2 = line_data[3]
 
@@ -110,16 +125,20 @@ for line in SAMPLELIST:
         phenotypes[phenotype] = 0
     phenotypes[phenotype] += 1
 
-    if (read_file1 not in fastq_objects):
-        PROCESSERRORS.write(read_file1 + " does not exist but is listed in the sample list file\n")
+    if read_file1 not in fastq_objects:
+        PROCESSERRORS.write(
+            read_file1 + " does not exist but is listed in the sample list file\n"
+        )
         PROCESSERRORS.close()
         sys.exit()
     if len(read_file2) <= 1:
         read_file2 = "-"
         object2 = "-"
     else:
-        if (read_file2 not in fastq_objects):
-            PROCESSERRORS.write(read_file2 + " does not exist but is listed in the sample list file\n")
+        if read_file2 not in fastq_objects:
+            PROCESSERRORS.write(
+                read_file2 + " does not exist but is listed in the sample list file\n"
+            )
             PROCESSERRORS.close()
             sys.exit()
         if read_file2 in fastqs:
@@ -149,7 +168,13 @@ if standalone == "true":
             PROCESSERRORS.close()
             sys.exit()
         if c1 == c2:
-            PROCESSERRORS.write("Can't compare " + c1 + " and " + c2 + " because they're the same phenotype\n")
+            PROCESSERRORS.write(
+                "Can't compare "
+                + c1
+                + " and "
+                + c2
+                + " because they're the same phenotype\n"
+            )
             PROCESSERRORS.close()
             sys.exit()
         c1Count = phenotypes[c1]

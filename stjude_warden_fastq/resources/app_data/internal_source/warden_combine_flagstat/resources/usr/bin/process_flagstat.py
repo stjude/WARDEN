@@ -4,14 +4,25 @@ import sys
 import os
 import re
 from decimal import *
+
 sample_list = sys.argv[1]
 SAMPLELIST = open(sample_list)
 header = SAMPLELIST.readline()
 
 out_file = "alignment_statistics.txt"
-OUT = open(out_file, 'w')
+OUT = open(out_file, "w")
 
-cols = ("Sample", "totalReads", "totalQCPassed", "totalQCNotPassed", "Duplicate", "DuplicatePerc", "MappedReads", "PercentMapped", "Paired")
+cols = (
+    "Sample",
+    "totalReads",
+    "totalQCPassed",
+    "totalQCNotPassed",
+    "Duplicate",
+    "DuplicatePerc",
+    "MappedReads",
+    "PercentMapped",
+    "Paired",
+)
 
 OUT.write("\t".join(cols) + "\n")
 
@@ -38,6 +49,16 @@ for line in SAMPLELIST:
     per_mapped = m4.group(3)
     m5 = re.search("(\d+)\s+\+\s+(\d+)\s+paired in sequencing", flag_lines)
     paired = m5.group(1)
-    out_data = (sample_name, totalReads, totalQCPassed, totalQCNotPassed, duplicates, duplicate_perc, mapped, per_mapped, paired)
+    out_data = (
+        sample_name,
+        totalReads,
+        totalQCPassed,
+        totalQCNotPassed,
+        duplicates,
+        duplicate_perc,
+        mapped,
+        per_mapped,
+        paired,
+    )
     out_data = map(str, out_data)
     OUT.write("\t".join(out_data) + "\n")

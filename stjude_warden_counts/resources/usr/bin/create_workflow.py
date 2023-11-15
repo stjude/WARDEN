@@ -40,34 +40,48 @@ for line in COUNTFILES:
 
 def build_workflow():
     if parameters["folder_provided"] == "false":
-        wf = dxpy.new_dxworkflow(name='WARDEN_workflow',
-                                 description='RNA-SEQ Workflow',
-                                 output_folder=parameters["Output"],
-                                 )
+        wf = dxpy.new_dxworkflow(
+            name="WARDEN_workflow",
+            description="RNA-SEQ Workflow",
+            output_folder=parameters["Output"],
+        )
     else:
-        wf = dxpy.new_dxworkflow(name='WARDEN_workflow',
-                                 description='RNA-SEQ Workflow',
-                                 )
+        wf = dxpy.new_dxworkflow(
+            name="WARDEN_workflow",
+            description="RNA-SEQ Workflow",
+        )
     wf_outputs = []
 
-    combine_counts_applet = dxpy.search.find_one_data_object(classname="applet",
-                                                             name=app_names["combine_counts"],
-                                                             state="closed",
-                                                             return_handler=True)
-    limma_applet = dxpy.search.find_one_data_object(classname="applet",
-                                                    name=app_names["limma"],
-                                                    state="closed",
-                                                    return_handler=True)
-    simple_DE_applet = dxpy.search.find_one_data_object(classname="applet",
-                                                        name=app_names["simple_DE"],
-                                                        state="closed",
-                                                        return_handler=True)
+    combine_counts_applet = dxpy.search.find_one_data_object(
+        classname="applet",
+        name=app_names["combine_counts"],
+        state="closed",
+        return_handler=True,
+    )
+    limma_applet = dxpy.search.find_one_data_object(
+        classname="applet", name=app_names["limma"], state="closed", return_handler=True
+    )
+    simple_DE_applet = dxpy.search.find_one_data_object(
+        classname="applet",
+        name=app_names["simple_DE"],
+        state="closed",
+        return_handler=True,
+    )
 
     sample_num = 0
     htseq_results = [dxpy.dxlink(count_id) for count_id in samples.values()]
 
-    combine_input = {"count_files": htseq_results, "name_value": "htseq", "sample_files": [dxpy.dxlink(final_sample_list_id)]}
-    combine_counts_stage_id = wf.add_stage(combine_counts_applet, stage_input=combine_input, instance_type=parameters["combine_counts_instance"], name="COMBINE HTSEQ")
+    combine_input = {
+        "count_files": htseq_results,
+        "name_value": "htseq",
+        "sample_files": [dxpy.dxlink(final_sample_list_id)],
+    }
+    combine_counts_stage_id = wf.add_stage(
+        combine_counts_applet,
+        stage_input=combine_input,
+        instance_type=parameters["combine_counts_instance"],
+        name="COMBINE HTSEQ",
+    )
     wf_outputs += [
         {
             "name": "combined_counts",
@@ -75,21 +89,37 @@ def build_workflow():
             "outputSource": {
                 "$dnanexus_link": {
                     "stage": combine_counts_stage_id,
-                    "outputField": "count_file"
+                    "outputField": "count_file",
                 }
-            }
+            },
         },
     ]
 
     if parameters["limma_DE_viewer"] != "None":
-        limma_viewer_project, limma_viewer_file = parameters["limma_DE_viewer"].split(":")
-        limma_viewer_link = dxpy.dxlink({"project": limma_viewer_project, "id": limma_viewer_file})
+        limma_viewer_project, limma_viewer_file = parameters["limma_DE_viewer"].split(
+            ":"
+        )
+        limma_viewer_link = dxpy.dxlink(
+            {"project": limma_viewer_project, "id": limma_viewer_file}
+        )
 
     if parameters["limma_runnable"] == "true":
-        limma_input = {"input_count_file": dxpy.dxlink({"stage": combine_counts_stage_id, "outputField": "count_file"}), "sample_list_file": dxpy.dxlink(final_sample_list_id), "calcNormFactors_method": parameters["calcNormFactors_method"], "filter_count_type": parameters["filter_count_type"], "filter_count": int(parameters["filter_count"]), "p_value_adjust": parameters["p_value_adjust"], "contrasts_file": dxpy.dxlink(comparisons_limma_id)}
+        limma_input = {
+            "input_count_file": dxpy.dxlink(
+                {"stage": combine_counts_stage_id, "outputField": "count_file"}
+            ),
+            "sample_list_file": dxpy.dxlink(final_sample_list_id),
+            "calcNormFactors_method": parameters["calcNormFactors_method"],
+            "filter_count_type": parameters["filter_count_type"],
+            "filter_count": int(parameters["filter_count"]),
+            "p_value_adjust": parameters["p_value_adjust"],
+            "contrasts_file": dxpy.dxlink(comparisons_limma_id),
+        }
         if parameters["limma_DE_viewer"] != "None":
             limma_input["difex_viewer"] = limma_viewer_link
-        limma_stage_id = wf.add_stage(limma_applet, stage_input=limma_input, name="LIMMA")
+        limma_stage_id = wf.add_stage(
+            limma_applet, stage_input=limma_input, name="LIMMA"
+        )
         wf_outputs += [
             {
                 "name": "limma_outfiles",
@@ -97,9 +127,9 @@ def build_workflow():
                 "outputSource": {
                     "$dnanexus_link": {
                         "stage": limma_stage_id,
-                        "outputField": "out_files"
+                        "outputField": "out_files",
                     }
-                }
+                },
             },
             {
                 "name": "limma_viewer",
@@ -107,15 +137,25 @@ def build_workflow():
                 "outputSource": {
                     "$dnanexus_link": {
                         "stage": limma_stage_id,
-                        "outputField": "viewer_bookmark"
+                        "outputField": "viewer_bookmark",
                     }
-                }
+                },
             },
         ]
-    simple_DE_input = {"input_count_file": dxpy.dxlink({"stage": combine_counts_stage_id, "outputField": "count_file"}), "sample_list_file": dxpy.dxlink(final_sample_list_id), "contrasts_file": dxpy.dxlink(comparisons_all_id)}
+    simple_DE_input = {
+        "input_count_file": dxpy.dxlink(
+            {"stage": combine_counts_stage_id, "outputField": "count_file"}
+        ),
+        "sample_list_file": dxpy.dxlink(final_sample_list_id),
+        "contrasts_file": dxpy.dxlink(comparisons_all_id),
+    }
     if parameters["limma_DE_viewer"] != "None":
         simple_DE_input["difex_viewer"] = limma_viewer_link
-    simple_DE_stage_id = wf.add_stage(simple_DE_applet, stage_input=simple_DE_input, name="SIMPLE DIFFERENTIAL_EXPRESSION")
+    simple_DE_stage_id = wf.add_stage(
+        simple_DE_applet,
+        stage_input=simple_DE_input,
+        name="SIMPLE DIFFERENTIAL_EXPRESSION",
+    )
     wf_outputs += [
         {
             "name": "simple_DE_outfiles",
@@ -123,9 +163,9 @@ def build_workflow():
             "outputSource": {
                 "$dnanexus_link": {
                     "stage": simple_DE_stage_id,
-                    "outputField": "out_files"
+                    "outputField": "out_files",
                 }
-            }
+            },
         },
         {
             "name": "simple_DE_viewer",
@@ -133,9 +173,9 @@ def build_workflow():
             "outputSource": {
                 "$dnanexus_link": {
                     "stage": simple_DE_stage_id,
-                    "outputField": "viewer_bookmark"
+                    "outputField": "viewer_bookmark",
                 }
-            }
+            },
         },
     ]
 

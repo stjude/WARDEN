@@ -1,0 +1,8 @@
+Sample	Phenotype	BAM
+ctrl_1	control	ctrl_1.Aligned.name_sorted.bam
+ctrl_2	control	ctrl_2.Aligned.name_sorted.bam
+ctrl_3	control	ctrl_3.Aligned.name_sorted.bam
+ssa1	ssa	ssa1.Aligned.name_sorted.bam
+ssa2	ssa	ssa2.Aligned.name_sorted.bam
+ssa3	ssa	ssa3.Aligned.name_sorted.bam
+#comparisons=ssa-control

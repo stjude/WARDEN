@@ -1,0 +1,8 @@
+Sample	Phenotype	Readfile1	Readfile2
+^ctrl_1	&control	ctrl_1.htseq_counts.txt	-
+5.ctrl_2	&control	ctrl_2.htseq_counts.txt	-
+.5ctrl_3	&control	ctrl_3.htseq_counts.txt	-
+.$ssa1	1ssa	ssa1.htseq_counts.txt	-
+.ssa2	1ssa	ssa2.htseq_counts.txt	-
+5^ssa3	1ssa	ssa3.htseq_counts.txt	-
+#comparisons=1ssa-&control			

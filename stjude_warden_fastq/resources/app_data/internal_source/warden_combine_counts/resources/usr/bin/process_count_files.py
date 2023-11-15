@@ -8,14 +8,14 @@ sample_files_list = sys.argv[1]
 count_files_lists = sys.argv[2]
 out_counts_file = sys.argv[3]
 out_samples_file = sys.argv[4]
-OUTCOUNTS = open(out_counts_file, 'w')
-OUTSAMPLES = open(out_samples_file, 'w')
-ERRORS = open("errors.txt", 'w')
+OUTCOUNTS = open(out_counts_file, "w")
+OUTSAMPLES = open(out_samples_file, "w")
+ERRORS = open("errors.txt", "w")
 
 SAMPLEFILES = open(sample_files_list)
 COUNTFILES = open(count_files_lists)
 
-sample_header = ''
+sample_header = ""
 sample_order = 0
 samples = {}
 sample_lines = {}
@@ -23,11 +23,10 @@ feature_list = {}
 
 print("Looping SAMPLEFILES")
 for sample_file in SAMPLEFILES:
-
     sample_file = sample_file.rstrip("\n")
     SAMPLEFILE = open(sample_file)
 
-    sample_header = ''
+    sample_header = ""
     line_counter = 0
     for line in SAMPLEFILE:
         line = line.rstrip("\n")
@@ -37,7 +36,12 @@ for sample_file in SAMPLEFILES:
             tmp_sample_header = line
             if len(sample_header) > 0:
                 if tmp_sample_header != sample_header:
-                    ERRORS.write("SAMPLE HEADERS DO NOT MATCH: " + sample_header + " vs " + tmp_sample_header)
+                    ERRORS.write(
+                        "SAMPLE HEADERS DO NOT MATCH: "
+                        + sample_header
+                        + " vs "
+                        + tmp_sample_header
+                    )
                     sys.exit(0)
             else:
                 sample_header = tmp_sample_header
@@ -88,22 +92,32 @@ for count_file in COUNTFILES:
         for sc in range(1, len(count_data)):
             sample = count_header_list[sc]
             if sample not in samples:
-                print("SAMPLE " + sample + " not in a sample sheet\nDoes the file have a header?")
-                ERRORS.write("SAMPLE " + sample + " not in a sample sheet\nDoes the file have a header?")
+                print(
+                    "SAMPLE "
+                    + sample
+                    + " not in a sample sheet\nDoes the file have a header?"
+                )
+                ERRORS.write(
+                    "SAMPLE "
+                    + sample
+                    + " not in a sample sheet\nDoes the file have a header?"
+                )
                 sys.exit()
 
             count = count_data[sc]
             if sample in count_results[feature]:
                 if count != count_results[feature][sample]:
                     print("TWO SAMPLES WITH SAME NAME HAVE DIFFERENT COUNT VALUES")
-                    ERRORS.write("TWO SAMPLES WITH SAME NAME HAVE DIFFERENT COUNT VALUES")
+                    ERRORS.write(
+                        "TWO SAMPLES WITH SAME NAME HAVE DIFFERENT COUNT VALUES"
+                    )
                     sys.exit()
             else:
                 count_results[feature][sample] = count
     got_feature_list = True
 print("done getting features")
 samples_ordered = []
-for key, value in sorted(samples.iteritems(), key=lambda (k, v): (v, k)):
+for key, value in sorted(samples.iteritems(), key=lambda k, v: (v, k)):
     samples_ordered.append(key)
 header_line = count_header_list[0]
 for s in samples_ordered:

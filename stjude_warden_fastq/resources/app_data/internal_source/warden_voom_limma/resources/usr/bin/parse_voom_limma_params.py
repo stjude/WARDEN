@@ -3,12 +3,13 @@
 import yaml
 import sys
 import subprocess
+
 parameter_file = sys.argv[1]
 # parameter_file="../test.yaml"
-stream = file(parameter_file, 'r')
+stream = file(parameter_file, "r")
 
 
-yaml_obj = (yaml.load(stream))
+yaml_obj = yaml.load(stream)
 
 
 calcNormFactors_method = yaml_obj["calcNormFactors_method"]
@@ -32,5 +33,5 @@ print("p_value_adjust\t" + p_value_adjust)
 # RPARAM.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

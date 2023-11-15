@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import re
+
 flagstat = sys.argv[1]
 IN = open(flagstat)
 for line in IN:

@@ -8,13 +8,12 @@ count_file = sys.argv[1]
 gene_length_file = sys.argv[2]
 out_file = sys.argv[3]
 out_file_log2 = sys.argv[4]
-OUT = open(out_file, 'w')
-OUTLOG2 = open(out_file_log2, 'w')
+OUT = open(out_file, "w")
+OUTLOG2 = open(out_file_log2, "w")
 COUNTS = open(count_file)
 total_hits = 0
 count_header = COUNTS.readline()
 for line in COUNTS:
-
     line = line.rstrip("\n")
     line = line.rstrip("\r")
     g, count = line.split("\t")
@@ -45,7 +44,7 @@ for line in COUNTS:
     if gene[0] == "_":
         continue
     rpm = Decimal(count) / scaling_factor
-    rpmlog2 = (Decimal(count) + Decimal(.5)) / scaling_factor
+    rpmlog2 = (Decimal(count) + Decimal(0.5)) / scaling_factor
     gene_length = gene_lengths[gene]
     if gene_length == 0:
         continue

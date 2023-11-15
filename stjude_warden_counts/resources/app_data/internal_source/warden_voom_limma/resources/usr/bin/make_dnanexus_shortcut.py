@@ -30,13 +30,31 @@ def exit(statement, code):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Creates a viewer shortcut object on DNAnexus platform "
-                                                 "using the dx-toolkit.")
-    parser.add_argument("-v", "--viewer", help="Name of the viewer in DNAnexus", required=True)
-    parser.add_argument("-f", "--files", nargs="+", help="Files to include in the shortcut", required=True)
-    parser.add_argument("-o", "--output", help="Name of bookmark output object", required=True)
-    parser.add_argument("-p", "--project", help="Project to work within (default: the selected project in dx-toolkit).")
-    parser.add_argument("--verbose", help="Verbosity for debugging", default=False, action="store_true")
+    parser = argparse.ArgumentParser(
+        description="Creates a viewer shortcut object on DNAnexus platform "
+        "using the dx-toolkit."
+    )
+    parser.add_argument(
+        "-v", "--viewer", help="Name of the viewer in DNAnexus", required=True
+    )
+    parser.add_argument(
+        "-f",
+        "--files",
+        nargs="+",
+        help="Files to include in the shortcut",
+        required=True,
+    )
+    parser.add_argument(
+        "-o", "--output", help="Name of bookmark output object", required=True
+    )
+    parser.add_argument(
+        "-p",
+        "--project",
+        help="Project to work within (default: the selected project in dx-toolkit).",
+    )
+    parser.add_argument(
+        "--verbose", help="Verbosity for debugging", default=False, action="store_true"
+    )
     args = parser.parse_args()
 
     if args.verbose:
@@ -80,22 +98,21 @@ if __name__ == "__main__":
 
     mapper = {
         "preselectedIDs": file_ids,
-        "fileViewer": {
-            "project": project_id,
-            "id": viewer_id
-        }
+        "fileViewer": {"project": project_id, "id": viewer_id},
     }
 
     mapper_json_str = json.dumps(mapper)
     _log.debug("JSON object: {}".format(mapper_json_str))
 
     # create a new record object
-    p = shell("dx new record %s "
-              "--details '%s' "
-              "--type ViewerShortcut "
-              "--type SJCloudVisualization "
-              "--brief "
-              "--close" % (args.output, mapper_json_str))
+    p = shell(
+        "dx new record %s "
+        "--details '%s' "
+        "--type ViewerShortcut "
+        "--type SJCloudVisualization "
+        "--brief "
+        "--close" % (args.output, mapper_json_str)
+    )
 
     if p.returncode != 0:
         exit("Could not create record object with name '%s'! " % (args.output), 6)
