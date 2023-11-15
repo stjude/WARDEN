@@ -6,10 +6,10 @@ import subprocess
 
 parameter_file = sys.argv[1]
 # parameter_file="../test.yaml"
-stream = file(parameter_file, "r")
+stream = open(parameter_file, "r")
 
 
-yaml_obj = yaml.load(stream)
+yaml_obj = yaml.safe_load(stream)
 
 
 calcNormFactors_method = yaml_obj["calcNormFactors_method"]

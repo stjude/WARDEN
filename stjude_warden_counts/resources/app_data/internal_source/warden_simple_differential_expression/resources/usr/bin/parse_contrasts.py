@@ -9,4 +9,4 @@ out_comps = []
 for c in comp_array:
     c1, c2 = c.split("-")
     out_comps.append(c1 + "_vs_" + c2 + "=" + c1 + "-" + c2)
-print ",".join(out_comps)
+print(",".join(out_comps))
