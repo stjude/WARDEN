@@ -35,7 +35,7 @@ main() {
 
     default_scale=0
     if [ "$scale" == "$default_scale" ]; then
-        scale=$(python -c "print float(10**7)/float($counts)")
+        scale=$(python3 -c "print(float(10**7)/float($counts))")
     else
         scale=1
     fi

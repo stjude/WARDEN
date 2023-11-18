@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -117,7 +117,7 @@ for count_file in COUNTFILES:
     got_feature_list = True
 print("done getting features")
 samples_ordered = []
-for key, value in sorted(samples.items(), key=lambda k, v: (v, k)):
+for key, value in sorted(samples.items(), key=lambda kv: kv[1]):
     samples_ordered.append(key)
 header_line = count_header_list[0]
 for s in samples_ordered:

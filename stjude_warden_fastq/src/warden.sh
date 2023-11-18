@@ -74,7 +74,7 @@ main() {
     if [ "$sample_list_extension" == "txt" ]; then
         dos2unix -q sample_list.txt
     elif [ "$sample_list_extension" == "xlsx" ]; then
-        python /usr/bin/parse_excel_sample_list.py sample_list.xlsx > sample_list.txt
+        python3 /usr/bin/parse_excel_sample_list.py sample_list.xlsx > sample_list.txt
     else
         dx-jobutil-report-error "Improper Sample List Extension. This should be a .txt or .xlsx file" AppError
     fi

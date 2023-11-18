@@ -3,13 +3,7 @@
 set -e -x -o pipefail
 
 main() {
-    python -m pip install --no-cache-dir --upgrade pip~=20.3.4
-    python -m pip install --no-cache-dir --no-python-version-warning --upgrade setuptools~=44.1
-    python -m pip install --no-cache-dir --no-python-version-warning functools32~=3.2
-    python -m pip install --no-cache-dir --no-python-version-warning numpy==1.16.6
-    python -m pip install --no-cache-dir --no-python-version-warning matplotlib==2.2.5
-    python -m pip install --no-cache-dir --no-python-version-warning pysam==0.16.0.1
-    python -m pip install --no-cache-dir --no-python-version-warning HTSeq==0.12.4
+    python3 -m pip install --no-cache-dir HTSeq
     wget -nv -O jq-1.6 https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
     chmod +x ./jq-1.6
 
@@ -33,7 +27,7 @@ main() {
     if [ -n "$gene_length_file" ] && [ "$id_attribute" = "gene_name" ]; then
         fpkm_file=$prefix.fpkm.txt
         fpkmlog2File=$prefix.fpkm.log2.txt
-        python /usr/bin/calc_fpkm.py "$out_name" "$gene_length_file_path" "$fpkm_file" "$fpkmlog2File"
+        python3 /usr/bin/calc_fpkm.py "$out_name" "$gene_length_file_path" "$fpkm_file" "$fpkmlog2File"
 
         dx mkdir -p FPKM
         fpkm=$(dx upload --path FPKM/ "$fpkm_file" --brief)
