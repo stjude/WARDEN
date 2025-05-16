@@ -1,10 +1,10 @@
 # WARDEN
 
-The WARDEN (**W**orkflow for the **A**nalysis of **R**NA-Seq **D**ifferential **E**xpressio**N**) software uses RNA-Seq sequence files to perform alignment, coverage analysis, gene counts and differential expression analysis.
+The WARDEN (**W**orkflow for the **A**nalysis of **R**NA-Seq **D**ifferential **E**xpressio**N**) software uses RNA-Seq sequence files to perform alignment, coverage analysis, gene counts, and differential expression analysis.
 
 There are 3 entrypoints to the WARDEN workflow. The start-to-end workflow begins with FastQ files which are aligned by STAR. WARDEN can optionally be entered at this point with user-aligned RNA-Seq BAMs. Aligned BAMs are then run through HTSeq-count to determine the number of reads mapping to features. The next stage can also be entered with user-derived count files, where differential expression analysis is performed on the defined cohorts.
 
-For the full usage documentation, visit the [St. Jude Cloud University](https://university.stjude.cloud/docs/genomics-platform/workflow-guides/warden/).
+For the full usage documentation, visit the [St. Jude Cloud Docs](https://docs.stjude.cloud/genomics-platform/workflow-guides/warden).
 
 ## Workflow Steps
 
@@ -14,10 +14,10 @@ For the full usage documentation, visit the [St. Jude Cloud University](https://
 LIMMA analysis.
 4. Coverage plots of mapped reads are optionally generated as interactive visualizations.
 
-## Archeticture
+## Architecture
 
-WARDEN's three entry points exist as their own apps in the directories `stjude_warden_fastq`, `stjude_warden_bam`, and `stjude_warden_counts`. Within each app's `resources/app_data/internal_source/` directory are source code for dnanexus applets which are dynamically built when running the main app. Those applets are linked together by the `resources/usr/bin/create_workflow.py` scripts to create a workflow, which is built and run by the main app.
+WARDEN's three entry points exist as their own apps in the directories `stjude_warden_fastq`, `stjude_warden_bam`, and `stjude_warden_counts`. Within each app's `resources/app_data/internal_source/` directory are source code for dnanexus applets, which are dynamically built when running the main app. Those applets are linked together by the `resources/usr/bin/create_workflow.py` scripts to create a workflow, which is built and run by the main app.
 
-There is a very large amount of code duplication between these 3 main directories because the `dx build` process can't handle symlinks or imports. CI has been built that will ensure files that should be exact copies of eachother are. There are weakpoints in this, in that there is large amounts of duplication in the `create_workflow.py`, `warden.sh`, and `dxapp.json` files which must be manually ensured share the same updates. Similarly the subapplet `warden_genome_coverage_bed` in `stjude_warden_fastq` and `stjude_warden_bam` are slightly different and also require manual maintainence. While developing for this repo, project wide "find and replace" is your friend.
+There is a very large amount of code duplication between these 3 main directories because the `dx build` process can't handle symlinks or imports. CI has been built that will ensure that files that should be exact copies of each other are. There are weak points in this, in that there are large amounts of duplication in the `create_workflow.py`, `warden.sh`, and `dxapp.json` files which must be manually kept in sync. Similarly, the subapplet `warden_genome_coverage_bed` in `stjude_warden_fastq` and `stjude_warden_bam` are slightly different and also require manual maintenance. While developing for this repo, project-wide "find and replace" is your friend.
 
 For the most part, `stjude_warden_counts` is a subset of the code in `stjude_warden_bam`, which in turn is a subset of the code in `stjude_warden_fastq`.
